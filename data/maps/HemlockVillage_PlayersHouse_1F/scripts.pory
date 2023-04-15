@@ -1,0 +1,11 @@
+const LOCALID_MOM = 1
+
+mapscripts HemlockVillage_PlayersHouse_1F_MapScripts {}
+
+script HemlockVillage_PlayersHouse_1F_EventScript_Mom_Introduction{
+    lockall
+    faceplayer
+    setspeaker("Mother")
+    msgbox(format("Hello there, {PLAYER}!"))
+    releaseall
+}
