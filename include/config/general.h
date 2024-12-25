@@ -86,6 +86,10 @@
 // Naming Screen
 #define AUTO_LOWERCASE_KEYBOARD      GEN_LATEST  // Starting in GEN_6, after entering the first uppercase character, the keyboard switches to lowercase letters.
 
+// Config to toggle using the new shop menu.
+// Set this to either TRUE or FALSE.
+#define MUDSKIP_SHOP_UI                     TRUE
+
 #define MUDSKIP_OUTFIT_SYSTEM
 
 #define SAVE_TYPE_ERROR_SCREEN              FALSE   // When enabled, this shows an error message when the game is loaded on a cart without a flash chip or on an emulator with the wrong save type setting instead of crashing.
