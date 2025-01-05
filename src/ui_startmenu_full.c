@@ -47,6 +47,9 @@
 #include "link.h"
 #include "frontier_pass.h"
 #include "start_menu.h"
+#include "quests.h"
+
+#define tItemPcParam    data[6]
 
 /*
     Full Screen Start Menu
@@ -112,6 +115,8 @@ static void Task_StartMenuFullMain(u8 taskId);
 static u32 GetHPEggCyclePercent(u32 partyIndex);
 static void PrintMapNameAndTime(void);
 static void CursorCallback(struct Sprite *sprite);
+static bool8 StartMenuDebugCallback(void);
+static bool8 QuestMenuCallback(void);
 
 //==========CONST=DATA==========//
 static const struct BgTemplate sStartMenuBgTemplates[] =
@@ -1425,6 +1430,18 @@ void Task_ReturnToFieldOnSave(u8 taskId)
     }
 }
 
+void Task_QuestMenu_OpenFromStartMenu(u8 taskId)
+{
+	//s16 *data = gTasks[taskId].data;
+	if (!gPaletteFade.active)
+	{
+		StartMenuFull_FreeResources();
+        PlayRainStoppingSoundEffect();
+        CleanupOverworldWindowsAndTilemaps();
+		QuestMenu_Init(0, CB2_ReturnToFullScreenStartMenu);
+		DestroyTask(taskId);
+	}
+}
 
 //
 //  Handle save Confirmation and then Leave to Overworld for Saving 
@@ -1554,7 +1571,12 @@ static void Task_StartMenuFullMain(u8 taskId)
         gTasks[taskId].func = Task_HandleSaveConfirmation;
     }
 
-#if (FLAG_CLOCK_MODE != 0)
+    if(JOY_NEW(SELECT_BUTTON))
+    {
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        gTasks[taskId].func = Task_QuestMenu_OpenFromStartMenu;
+    }
+/*#if (FLAG_CLOCK_MODE != 0)
     if (JOY_NEW(SELECT_BUTTON)) // switch between clock modes
     {
         if (FlagGet(FLAG_CLOCK_MODE))
@@ -1565,7 +1587,7 @@ static void Task_StartMenuFullMain(u8 taskId)
         PrintMapNameAndTime();
         PlaySE(SE_SUCCESS);
     }
-#endif
+#endif*/
 
     if(gTasks[taskId].sFrameToSecondTimer >= 60) // every 60 frames update the time
     {
@@ -1574,4 +1596,10 @@ static void Task_StartMenuFullMain(u8 taskId)
     }
     gTasks[taskId].sFrameToSecondTimer++;
 
+}
+
+static bool8 QuestMenuCallback(void)
+{
+    CreateTask(Task_QuestMenu_OpenFromStartMenu, 0);
+    return TRUE;
 }
