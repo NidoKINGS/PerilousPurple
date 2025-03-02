@@ -48,7 +48,6 @@ struct HyperCutterUnk
 
 // this file's functions
 static void FieldCallback_CutTree(void);
-static void FieldCallback_CutGrass(void);
 static void StartCutTreeFieldEffect(void);
 static void StartCutGrassFieldEffect(void);
 static void SetCutGrassMetatile(s16, s16);
@@ -137,12 +136,12 @@ static const struct SpriteTemplate sSpriteTemplate_CutGrass =
 // code
 bool8 SetUpFieldMove_Cut(void)
 {
-    s16 x, y;
+    /*s16 x, y;
     u8 i, j;
     u8 tileBehavior;
     u16 userAbility;
     bool8 cutTiles[CUT_NORMAL_AREA];
-    bool8 ret;
+    bool8 ret;*/
 
     if (CheckObjectGraphicsInFrontOfPlayer(OBJ_EVENT_GFX_CUTTABLE_TREE) == TRUE)
     {
@@ -152,6 +151,10 @@ bool8 SetUpFieldMove_Cut(void)
         return TRUE;
     }
     else
+    {
+        return FALSE;
+    }
+    /*else
     {
         PlayerGetDestCoords(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
         userAbility = GetMonAbility(&gPlayerParty[GetCursorSelectionMonId()]);
@@ -278,7 +281,8 @@ bool8 SetUpFieldMove_Cut(void)
 static void FieldCallback_CutGrass(void)
 {
     gFieldEffectArguments[0] = GetCursorSelectionMonId();
-    ScriptContext_SetupScript(EventScript_UseCutGrass);
+    ScriptContext_SetupScript(EventScript_UseCutGrass);*/
+
 }
 
 bool8 FldEff_UseCutOnGrass(void)
@@ -293,7 +297,6 @@ bool8 FldEff_UseCutOnGrass(void)
 
 static void FieldCallback_CutTree(void)
 {
-    gFieldEffectArguments[0] = GetCursorSelectionMonId();
     ScriptContext_SetupScript(EventScript_UseCut);
 }
 

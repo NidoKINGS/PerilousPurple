@@ -2103,3 +2103,17 @@ const u32 gItemIconPalette_TwiceSpicedRadish[] = INCBIN_U32("graphics/items/icon
 const u32 gItemIcon_OutfitBox[] = INCBIN_U32("graphics/items/icons/outfit_box.4bpp.lz");
 const u32 gItemIconPalette_OutfitBox[] = INCBIN_U32("graphics/items/icon_palettes/outfit_box.gbapal.lz");
 
+const u32 gItemIcon_Surfboard[] = INCBIN_U32("graphics/items/icons/surfboard.4bpp.lz");
+const u32 gItemIconPalette_Surfboard[] = INCBIN_U32("graphics/items/icon_palettes/surfboard.gbapal.lz");
+
+const u32 gItemIcon_ScubaGear[] = INCBIN_U32("graphics/items/icons/scubagear.4bpp.lz");
+const u32 gItemIconPalette_ScubaGear[] = INCBIN_U32("graphics/items/icon_palettes/scubagear.gbapal.lz");
+
+const u32 gItemIcon_Lantern[] = INCBIN_U32("graphics/items/icons/lantern.4bpp.lz");
+const u32 gItemIconPalette_Lantern[] = INCBIN_U32("graphics/items/icon_palettes/lantern.gbapal.lz");
+
+const u32 gItemIcon_Gainz[] = INCBIN_U32("graphics/items/icons/gainz.4bpp.lz");
+const u32 gItemIconPalette_Gainz[] = INCBIN_U32("graphics/items/icon_palettes/gainz.gbapal.lz");
+
+const u32 gItemIcon_Mattock[] = INCBIN_U32("graphics/items/icons/mattock.4bpp.lz");
+const u32 gItemIconPalette_Mattock[] = INCBIN_U32("graphics/items/icon_palettes/mattock.gbapal.lz");

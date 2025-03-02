@@ -1700,6 +1700,28 @@ extern const u32 gItemIconPalette_BerserkGene[];
 extern const u32 gItemIcon_OutfitBox[];
 extern const u32 gItemIconPalette_OutfitBox[];
 
+//HM Items
+
+extern const u32 gItemIcon_Surfboard[];
+extern const u32 gItemIconPalette_Surfboard[];
+
+extern const u32 gItemIcon_ScubaGear[];
+extern const u32 gItemIconPalette_ScubaGear[];
+
+extern const u32 gItemIcon_Lantern[];
+extern const u32 gItemIconPalette_Lantern[];
+
+extern const u32 gItemIcon_Gainz[];
+extern const u32 gItemIconPalette_Gainz[];
+
+extern const u32 gItemIcon_Mattock[];
+extern const u32 gItemIconPalette_Mattock[];
+
+//extern const u32 gItemIcon_Jetpack[];
+//extern const u32 gItemIconPalette_Jetpack[];
+
+// Misc. items continued
+
 extern const u32 gItemIcon_FairyFeather[];
 extern const u32 gItemIconPalette_FairyFeather[];
 

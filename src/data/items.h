@@ -14085,7 +14085,7 @@ const struct Item gItemsInfo[] =
         .price = 2000,
         .description = COMPOUND_STRING(
             "A wooden toy\n"
-            "resembling a Poké-.\n"
+            "resembling a Poké-\n"
             "mon. Can be sold."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -14094,19 +14094,103 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
 
+    //Outfit Box
+
     [ITEM_OUTFIT_BOX] =
     {
         .name = _("Outfit Box"),
-        .price = 0,
-        .importance = 1,
+        .price = 2000,
         .description = COMPOUND_STRING(
-             "A box for storing\n"
-             "your collections of\n"
-             "Outfits safely."),
+            "A wooden box\n"
+            "that can store\n"
+            "multiple outfits."),
+            .importance = 1,
+            .pocket = POCKET_KEY_ITEMS,
+            .type = ITEM_USE_BAG_MENU,
+            .fieldUseFunc = ItemUseOutOfBattle_OutfitBox,
+            .iconPic = gItemIcon_OutfitBox,
+            .iconPalette = gItemIconPalette_OutfitBox,
+    },
+
+    //HM Items
+
+    [ITEM_SURFBOARD] =
+    {
+        .name = _("Surfboard"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "This flat board\n"
+            "is shaped for\n"
+            "riding waves."),
+        .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_OutfitBox,
-	.iconPic = gItemIcon_OutfitBox,
-	.iconPalette = gItemIconPalette_OutfitBox,
+        .fieldUseFunc = ItemUseOutOfBattle_Surfboard,
+        .iconPic = gItemIcon_Surfboard,
+        .iconPalette = gItemIconPalette_Surfboard,
     },
+
+    [ITEM_SCUBA_GEAR] =
+    {
+        .name = _("Scuba Gear"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Portable scuba gear\n"
+            "to dive into deep,\n"
+            "darkened waters."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_ScubaGear,
+        .iconPic = gItemIcon_ScubaGear,
+        .iconPalette = gItemIconPalette_ScubaGear, 
+    },
+
+    [ITEM_LANTERN] =
+    {
+        .name = _("Rotom-Lantern"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Powered by Rotom,\n"
+            "lights up with\n"
+            "a bright flash."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Lantern,
+        .iconPic = gItemIcon_Lantern,
+        .iconPalette = gItemIconPalette_Lantern, 
+    },
+
+    [ITEM_GAINZ] =
+    {
+        .name = _("Gain-Z"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Creatine to give\n"
+            "you the strength\n"
+            "to move boulders."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Gainz,
+        .iconPic = gItemIcon_Gainz,
+        .iconPalette = gItemIconPalette_Gainz, 
+    },
+
+    [ITEM_MATTOCK] =
+    {
+        .name = _("Mattock"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Two-sided tool to\n"
+            "smash rocks or cut\n"
+            "down small trees."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Mattock,
+        .iconPic = gItemIcon_Mattock,
+        .iconPalette = gItemIconPalette_Mattock, 
+    }
 };
