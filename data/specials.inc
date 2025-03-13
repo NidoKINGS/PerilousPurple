@@ -329,6 +329,7 @@ gSpecials::
 	def_special FoundBlackGlasses
 	def_special StartDroughtWeatherBlend
 	def_special DoDiveWarp
+	def_special DoCliffWarp
 	def_special DoFallWarp
 	def_special ShowContestEntryMonPic
 	def_special HideContestEntryMonPic
@@ -555,3 +556,5 @@ gSpecials::
 	def_special Script_GetChosenMonDefensiveIVs
 	def_special UseBlankMessageToCancelPokemonPic
 	def_special HeadbuttWildEncounter
+
+	

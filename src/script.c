@@ -362,6 +362,11 @@ void RunOnDiveWarpMapScript(void)
     MapHeaderRunScriptType(MAP_SCRIPT_ON_DIVE_WARP);
 }
 
+void RunOnCliffWarpMapScript(void)
+{
+    MapHeaderRunScriptType(MAP_SCRIPT_ON_CLIFF_WARP);
+}
+
 bool8 TryRunOnFrameMapScript(void)
 {
     u8 *ptr = MapHeaderCheckScriptTable(MAP_SCRIPT_ON_FRAME_TABLE);

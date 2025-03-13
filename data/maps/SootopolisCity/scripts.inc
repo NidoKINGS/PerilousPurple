@@ -177,7 +177,7 @@ SootopolisCity_EventScript_PlayerFaceLegendaries2::
 	return
 
 SootopolisCity_OnResume:
-	setdivewarp MAP_UNDERWATER_SOOTOPOLIS_CITY, 9, 6
+	setdivewarp MAP_SOOTOPOLIS_CLIFF, 14, 10
 	end
 
 SootopolisCity_OnFrame:

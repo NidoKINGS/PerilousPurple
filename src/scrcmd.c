@@ -872,6 +872,18 @@ bool8 ScrCmd_setdivewarp(struct ScriptContext *ctx)
     return FALSE;
 }
 
+bool8 ScrCmd_setcliffwarp(struct ScriptContext *ctx)
+{
+    u8 mapGroup = ScriptReadByte(ctx);
+    u8 mapNum = ScriptReadByte(ctx);
+    u8 warpId = ScriptReadByte(ctx);
+    u16 x = VarGet(ScriptReadHalfword(ctx));
+    u16 y = VarGet(ScriptReadHalfword(ctx));
+
+    SetFixedCliffWarp(mapGroup, mapNum, warpId, x, y);
+    return FALSE;
+}
+
 bool8 ScrCmd_setholewarp(struct ScriptContext *ctx)
 {
     u8 mapGroup = ScriptReadByte(ctx);

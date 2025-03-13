@@ -2117,3 +2117,6 @@ const u32 gItemIconPalette_Gainz[] = INCBIN_U32("graphics/items/icon_palettes/ga
 
 const u32 gItemIcon_Mattock[] = INCBIN_U32("graphics/items/icons/mattock.4bpp.lz");
 const u32 gItemIconPalette_Mattock[] = INCBIN_U32("graphics/items/icon_palettes/mattock.gbapal.lz");
+
+const u32 gItemIcon_Jetpack[] = INCBIN_U32("graphics/items/icons/jetpack.4bpp.lz");
+const u32 gItemIconPalette_Jetpack[] = INCBIN_U32("graphics/items/icon_palettes/jetpack.gbapal.lz");

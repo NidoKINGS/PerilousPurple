@@ -1717,8 +1717,8 @@ extern const u32 gItemIconPalette_Gainz[];
 extern const u32 gItemIcon_Mattock[];
 extern const u32 gItemIconPalette_Mattock[];
 
-//extern const u32 gItemIcon_Jetpack[];
-//extern const u32 gItemIconPalette_Jetpack[];
+extern const u32 gItemIcon_Jetpack[];
+extern const u32 gItemIconPalette_Jetpack[];
 
 // Misc. items continued
 

@@ -437,3 +437,76 @@ Text_FailSweetScent:
 
 Text_MonUsedFieldMove: @ 8290771
 	.string "{STR_VAR_1} used {STR_VAR_2}!$"
+
+@ Interact with cliffside
+
+EventScript_CliffSpot::
+	lockall
+	checkitem ITEM_JETPACK, 1
+	goto_if_eq VAR_RESULT, 0, EventScript_CantCliff
+	msgbox Text_PlayerUsedCliff, MSGBOX_DEFAULT
+	dofieldeffect FLDEFF_USE_CLIFF
+	goto EventScript_EndCliff
+	end
+
+EventScript_UseCliff::
+	lockall
+	dofieldeffect FLDEFF_USE_CLIFF
+	goto EventScript_EndCliff
+	end
+
+EventScript_CantCliff::
+	msgbox Text_CantCliff, MSGBOX_DEFAULT
+	releaseall
+	end
+
+EventScript_EndCliff::
+	releaseall
+	end
+
+EventScript_UseCliffTop::
+	lockall
+	checkitem ITEM_JETPACK, 1
+	msgbox Text_Return, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq EventScript_ReturnToRoute
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_StayOnCliff
+	end
+
+EventScript_ReturnToRoute::
+	lockall
+	msgbox Text_Returned, MSGBOX_DEFAULT
+	dofieldeffect FLDEFF_USE_CLIFF
+	goto EventScript_EndLanded
+	end
+
+EventScript_StayOnCliff::
+	lockall
+	msgbox Text_DontReturn, MSGBOX_DEFAULT
+	goto EventScript_EndLanded
+	end
+
+EventScript_EndLanded::
+	releaseall
+	end
+
+Text_Return:
+	.string "Do you want to descend\n"
+	.string "down the cliffside?$"
+
+Text_CantCliff:
+	.string "I think I see something at the\n"
+	.string "top of this cliff…\p"
+	.string "I wonder how I get up there…$"
+
+Text_PlayerUsedCliff:
+	.string "{PLAYER} put on the Jetpack!$"
+
+Text_Returned:
+	.string "{PLAYER} used the Jetpack to\n"
+	.string "safely descend the cliff!$"
+
+Text_DontReturn:
+	.string "{PLAYER} decided to stay\n"
+	.string "on the cliff landing.$"

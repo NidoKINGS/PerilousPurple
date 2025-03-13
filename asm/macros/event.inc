@@ -490,6 +490,16 @@
 	formatwarp \map, \a, \b, \c
 	.endm
 
+	@ Sets the destination that diving or emerging from a dive will take the player to. Note that this only
+	@ applies if the current map does not have a dive/emerge connection. If it does have a corresponding
+	@ map connection then that map and the player's current coordinates will be used as the destination instead.
+	@ Warp commands can be given either the id of which warp location to go to on the destination map
+	@ or a pair of x/y coordinates to go to directly on the destination map.
+	.macro setcliffwarp map:req, a, b, c
+	.byte SCR_OP_SETCLIFFWARP
+	formatwarp \map, \a, \b, \c
+	.endm
+
 	@ Sets the destination that falling into a hole will take the player to.
 	@ While it does accept and set the x/y coordinates and warpId, they are ultimately ignored.
 	@ This is only used to set the map the player should fall to. The exact location on the

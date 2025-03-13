@@ -6,7 +6,7 @@
 #define MB_TALL_GRASS 0x02
 #define MB_LONG_GRASS 0x03
 #define MB_HEADBUTT 0x04 // MB_UNUSED_04
-#define MB_UNUSED_05 0x05
+#define MB_CLIFF 0x05 // MB_UNUSED_05
 #define MB_DEEP_SAND 0x06
 #define MB_SHORT_GRASS 0x07
 #define MB_CAVE 0x08
@@ -36,7 +36,7 @@
 #define MB_ICE 0x20
 #define MB_SAND 0x21
 #define MB_SEAWEED 0x22
-#define MB_UNUSED_23 0x23
+#define MB_NO_LANDING 0x23 //MB_UNUSED_23
 #define MB_ASHGRASS 0x24
 #define MB_FOOTPRINTS 0x25
 #define MB_THIN_ICE 0x26

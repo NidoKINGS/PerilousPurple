@@ -1,6 +1,7 @@
 #include "global.h"
 #include "data.h"
 #include "decompress.h"
+#include "event_data.h"
 #include "event_object_movement.h"
 #include "field_camera.h"
 #include "field_control_avatar.h"
@@ -29,6 +30,7 @@
 #include "trig.h"
 #include "util.h"
 #include "constants/field_effects.h"
+#include "constants/field_specials.h"
 #include "constants/event_objects.h"
 #include "constants/event_object_movement.h"
 #include "constants/metatile_behaviors.h"
@@ -234,6 +236,10 @@ static void UseVsSeeker_StopPlayerMovement(struct Task *task);
 static void UseVsSeeker_DoPlayerAnimation(struct Task *task);
 static void UseVsSeeker_ResetPlayerGraphics(struct Task *task);
 static void UseVsSeeker_CleanUpFieldEffect(struct Task *task);
+
+static void Task_UseCliff(u8);
+static bool8 CliffFieldEffect_Init(struct Task *);
+static bool8 CliffFieldEffect_TryWarp(struct Task *);
 
 // Static RAM declarations
 
@@ -679,6 +685,12 @@ static bool8 (*const sLavaridgeGym1FWarpEffectFuncs[])(struct Task *, struct Obj
     LavaridgeGym1FWarpEffect_Disappear,
     LavaridgeGym1FWarpEffect_FadeOut,
     LavaridgeGym1FWarpEffect_Warp,
+};
+
+static bool8 (*const sCliffFieldEffectFuncs[])(struct Task *) =
+{
+    CliffFieldEffect_Init,
+    CliffFieldEffect_TryWarp,
 };
 
 static void (*const sEscapeRopeWarpOutEffectFuncs[])(struct Task *) =
@@ -2093,6 +2105,37 @@ static bool8 LavaridgeGymB1FWarpExitEffect_End(struct Task *task, struct ObjectE
         UnfreezeObjectEvents();
         DestroyTask(FindTaskIdByFunc(Task_LavaridgeGymB1FWarpExit));
     }
+    return FALSE;
+}
+
+bool8 FldEff_UseCliff(void)
+{
+    u8 taskId;
+    taskId = CreateTask(Task_UseCliff, 0xff);
+    Task_UseCliff(taskId);
+    return FALSE;
+}
+
+void Task_UseCliff(u8 taskId)
+{
+    while (sCliffFieldEffectFuncs[gTasks[taskId].data[0]](&gTasks[taskId]));
+}
+
+static bool8 CliffFieldEffect_Init(struct Task *task)
+{
+    gPlayerAvatar.preventStep = TRUE;
+    task->data[0]++;
+    return FALSE;
+}
+
+static bool8 CliffFieldEffect_TryWarp(struct Task *task)
+{
+    struct MapPosition mapPosition;
+    PlayerGetDestCoords(&mapPosition.x, &mapPosition.y);
+
+    TryDoCliffWarp(&mapPosition, gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior);
+	DestroyTask(FindTaskIdByFunc(Task_UseCliff));
+	FieldEffectActiveListRemove(FLDEFF_USE_CLIFF);
     return FALSE;
 }
 

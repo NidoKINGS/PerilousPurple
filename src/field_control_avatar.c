@@ -57,6 +57,8 @@ static const u8 *GetInteractedMetatileScript(struct MapPosition *, u8, u8);
 static const u8 *GetInteractedWaterScript(struct MapPosition *, u8, u8);
 static bool32 TrySetupDiveDownScript(void);
 static bool32 TrySetupDiveEmergeScript(void);
+static bool32 TrySetupCliffScript(void);
+static bool32 TrySetupCliffLandScript(void);
 static bool8 TryStartStepBasedScript(struct MapPosition *, u16, u16);
 static bool8 CheckStandardWildEncounter(u16);
 static bool8 TryArrowWarp(struct MapPosition *, u16, u8);
@@ -182,6 +184,9 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
 
     if (input->pressedBButton && TrySetupDiveEmergeScript() == TRUE)
         return TRUE;
+    
+    if (input->pressedAButton && TrySetupCliffLandScript() == TRUE)
+        return TRUE;    
     if (input->tookStep)
     {
         IncrementGameStat(GAME_STAT_STEPS);
@@ -223,6 +228,9 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
             return TRUE;
     }
     if (input->pressedAButton && TrySetupDiveDownScript() == TRUE)
+        return TRUE;
+
+    if (input->pressedAButton && TrySetupCliffScript() == TRUE)
         return TRUE;
     if (input->pressedStartButton)
     {
@@ -580,6 +588,26 @@ static bool32 TrySetupDiveEmergeScript(void)
     if (gMapHeader.mapType == MAP_TYPE_UNDERWATER && TrySetDiveWarp() == 1)
     {
         ScriptContext_SetupScript(EventScript_UseDiveUnderwater);
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static bool32 TrySetupCliffScript(void)
+{
+    if (TrySetCliffWarp() == 2)
+    {
+        ScriptContext_SetupScript(EventScript_CliffSpot);
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static bool32 TrySetupCliffLandScript(void)
+{
+    if (gMapHeader.mapType == MAP_TYPE_CLIFFTOP && TrySetCliffWarp() == 1)
+    {
+        ScriptContext_SetupScript(EventScript_UseCliffTop);
         return TRUE;
     }
     return FALSE;
@@ -1133,6 +1161,51 @@ u8 TrySetDiveWarp(void)
     else if (MetatileBehavior_IsDiveable(metatileBehavior) == TRUE)
     {
         if (SetDiveWarpDive(x - MAP_OFFSET, y - MAP_OFFSET) == TRUE)
+            return 2;
+    }
+    return 0;
+}
+
+bool8 TryDoCliffWarp(struct MapPosition *position, u16 metatileBehavior)
+{
+    if (gMapHeader.mapType == MAP_TYPE_CLIFFTOP && !MetatileBehavior_IsUnableToLand(metatileBehavior))
+    {
+        if (SetCliffWarpLand(position->x - MAP_OFFSET, position->y - MAP_OFFSET))
+        {
+            StoreInitialPlayerAvatarState();
+            DoCliffWarp();
+            PlaySE(SE_M_FLY);
+            return TRUE;
+        }
+    }
+    else if (MetatileBehavior_IsCliff(metatileBehavior) == TRUE)
+    {
+        if (SetCliffWarpUp(position->x - MAP_OFFSET, position->y - MAP_OFFSET))
+        {
+            StoreInitialPlayerAvatarState();
+            DoCliffWarp();
+            PlaySE(SE_M_FLY);
+            return TRUE;
+        }
+    }
+    return FALSE;
+}
+
+u8 TrySetCliffWarp(void)
+{
+    s16 x, y;
+    u8 metatileBehavior;
+
+    PlayerGetDestCoords(&x, &y);
+    metatileBehavior = MapGridGetMetatileBehaviorAt(x, y);
+    if (gMapHeader.mapType == MAP_TYPE_CLIFFTOP && !MetatileBehavior_IsUnableToLand(metatileBehavior))
+    {
+        if (SetCliffWarpLand(x - MAP_OFFSET, y - MAP_OFFSET) == TRUE)
+            return 1;
+    }
+    else if (MetatileBehavior_IsCliff(metatileBehavior) == TRUE)
+    {
+        if (SetCliffWarpUp(x - MAP_OFFSET, y - MAP_OFFSET) == TRUE)
             return 2;
     }
     return 0;

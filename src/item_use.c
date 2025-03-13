@@ -87,13 +87,14 @@ static bool32 IsValidLocationForVsSeeker(void);
 static void CB2_OpenOutfitBoxFromBag(void);
 static void Task_OpenRegisteredOutfitBox(u8 taskId);
 static void ItemUseOnFieldCB_Surfboard(u8);
-static void ItemUseOnFieldCB_Mattock(u8);
 static void ItemUseOnFieldCB_MattockCut(u8);
 static void ItemUseOnFieldCB_MattockSmash(u8);
 static void ItemUseOnFieldCB_ScubaGearAboveWater(u8);
 static void ItemUseOnFieldCB_ScubaGearUnderwater(u8);
 static void ItemUseOnFieldCB_Lantern(u8);
 static void ItemUseOnFieldCB_Gainz(u8);
+static void ItemUseOnFieldCB_JetpackCliff(u8);
+static void ItemUseOnFieldCB_JetpackCliffTop(u8);
 
 // EWRAM variables
 EWRAM_DATA static void(*sItemUseOnFieldCB)(u8 taskId) = NULL;
@@ -1674,12 +1675,6 @@ void ItemUseOutOfBattle_Mattock(u8 taskId)
         DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 }
 
-static void ItemUseOnFieldCB_Mattock(u8 taskId)
-{
-	LockPlayerFieldControls();
-    ScriptContext_SetupScript(EventScript_UseCut); ScriptContext_SetupScript(EventScript_UseRockSmash);
-    DestroyTask(taskId);
-}
 
 void ItemUseOutOfBattle_MattockCut(u8 taskId)
 {
@@ -1744,6 +1739,40 @@ static void ItemUseOnFieldCB_ScubaGearUnderwater(u8 taskId)
 {
 	LockPlayerFieldControls();
     ScriptContext_SetupScript(EventScript_UseDiveUnderwater);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_Jetpack(u8 taskId)
+{
+    if (TrySetCliffWarp() == 2)
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_JetpackCliff;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else if (gMapHeader.mapType == MAP_TYPE_CLIFFTOP && TrySetCliffWarp() == 1)
+	{
+		sItemUseOnFieldCB = ItemUseOnFieldCB_JetpackCliffTop;
+        SetUpItemUseOnFieldCallback(taskId);
+	}
+    else if (Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
+    {
+        SetMainCallback2(CB2_OpenFlyMap);
+    }
+	else
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+}
+
+static void ItemUseOnFieldCB_JetpackCliff(u8 taskId)
+{
+	LockPlayerFieldControls();
+    ScriptContext_SetupScript(EventScript_UseCliff);
+    DestroyTask(taskId);
+}
+
+static void ItemUseOnFieldCB_JetpackCliffTop(u8 taskId)
+{
+	LockPlayerFieldControls();
+    ScriptContext_SetupScript(EventScript_UseCliffTop);
     DestroyTask(taskId);
 }
 

@@ -68,5 +68,6 @@ void ItemUseOutOfBattle_MattockSmash(u8);
 void ItemUseOutOfBattle_ScubaGear(u8);
 void ItemUseOutOfBattle_Lantern(u8);
 void ItemUseOutOfBattle_Gainz(u8);
+void ItemUseOutOfBattle_Jetpack(u8);
 
 #endif // GUARD_ITEM_USE_H

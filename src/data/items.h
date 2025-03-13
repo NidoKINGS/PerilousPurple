@@ -14192,5 +14192,21 @@ const struct Item gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_Mattock,
         .iconPic = gItemIcon_Mattock,
         .iconPalette = gItemIconPalette_Mattock, 
+    },
+
+    [ITEM_JETPACK] =
+    {
+        .name = _("Jetpack"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Used to reach high\n"
+            "cliffs or travel\n"
+            "to known areas."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_Jetpack,
+        .iconPic = gItemIcon_Jetpack,
+        .iconPalette = gItemIconPalette_Jetpack, 
     }
 };

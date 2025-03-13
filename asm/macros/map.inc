@@ -143,6 +143,8 @@
 	.equiv connection_right, CONNECTION_EAST
 	.equiv connection_dive, CONNECTION_DIVE
 	.equiv connection_emerge, CONNECTION_EMERGE
+	.equiv connection_cliff, CONNECTION_CLIFF
+	.equiv connection_land, CONNECTION_LAND
 
 	@ Defines a map connection. Mirrors the struct layout of MapConnection in include/global.fieldmap.h
 	.macro connection direction:req, offset:req, map:req

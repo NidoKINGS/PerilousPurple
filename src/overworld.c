@@ -201,6 +201,7 @@ EWRAM_DATA static u8 sObjectEventLoadFlag = 0;
 EWRAM_DATA struct WarpData gLastUsedWarp = {0};
 EWRAM_DATA static struct WarpData sWarpDestination = {0};  // new warp position
 EWRAM_DATA static struct WarpData sFixedDiveWarp = {0};
+EWRAM_DATA static struct WarpData sFixedCliffWarp = {0};
 EWRAM_DATA static struct WarpData sFixedHoleWarp = {0};
 EWRAM_DATA static u16 sLastMapSectionId = 0;
 EWRAM_DATA static struct InitialPlayerAvatarState sInitialPlayerAvatarState = {0};
@@ -577,12 +578,14 @@ void ApplyCurrentWarp(void)
     gLastUsedWarp = gSaveBlock1Ptr->location;
     gSaveBlock1Ptr->location = sWarpDestination;
     sFixedDiveWarp = sDummyWarpData;
+    sFixedCliffWarp = sDummyWarpData;
     sFixedHoleWarp = sDummyWarpData;
 }
 
 static void ClearDiveAndHoleWarps(void)
 {
     sFixedDiveWarp = sDummyWarpData;
+    sFixedCliffWarp = sDummyWarpData;
     sFixedHoleWarp = sDummyWarpData;
 }
 
@@ -747,6 +750,16 @@ static void SetWarpDestinationToDiveWarp(void)
     sWarpDestination = sFixedDiveWarp;
 }
 
+void SetFixedCliffWarp(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
+{
+    SetWarpData(&sFixedCliffWarp, mapGroup, mapNum, warpId, x, y);
+}
+
+static void SetWarpDestinationToCliffWarp(void)
+{
+    sWarpDestination = sFixedCliffWarp;
+}
+
 void SetFixedHoleWarp(s8 mapGroup, s8 mapNum, s8 warpId, s8 x, s8 y)
 {
     SetWarpData(&sFixedHoleWarp, mapGroup, mapNum, warpId, x, y);
@@ -824,6 +837,34 @@ bool8 SetDiveWarpEmerge(u16 x, u16 y)
 bool8 SetDiveWarpDive(u16 x, u16 y)
 {
     return SetDiveWarp(CONNECTION_DIVE, x, y);
+}
+
+static bool8 SetCliffWarp(u8 dir, u16 x, u16 y)
+{
+    const struct MapConnection *connection = GetMapConnection(dir);
+
+    if (connection != NULL)
+    {
+        SetWarpDestination(connection->mapGroup, connection->mapNum, WARP_ID_NONE, x, y);
+    }
+    else
+    {
+        RunOnCliffWarpMapScript();
+        if (IsDummyWarp(&sFixedDiveWarp))
+            return FALSE;
+        SetWarpDestinationToDiveWarp();
+    }
+    return TRUE;
+}
+
+bool8 SetCliffWarpLand(u16 x, u16 y)
+{
+    return SetCliffWarp(CONNECTION_CLIFF, x, y);
+}
+
+bool8 SetCliffWarpUp(u16 x, u16 y)
+{
+    return SetCliffWarp(CONNECTION_LAND, x, y);
 }
 
 void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
@@ -994,6 +1035,10 @@ static u8 GetAdjustedInitialDirection(struct InitialPlayerAvatarState *playerStr
         return DIR_EAST;
     else if (MetatileBehavior_IsDeepSouthWarp(metatileBehavior) == TRUE)
         return DIR_NORTH;
+    else if (MetatileBehavior_IsCliff(metatileBehavior) == TRUE && mapType == MAP_TYPE_CLIFFTOP)
+        return DIR_NORTH;
+    else if (MetatileBehavior_IsCliff(metatileBehavior) == TRUE)
+        return DIR_SOUTH;
     else if (MetatileBehavior_IsNonAnimDoor(metatileBehavior) == TRUE || MetatileBehavior_IsDoor(metatileBehavior) == TRUE)
         return DIR_SOUTH;
     else if (MetatileBehavior_IsSouthArrowWarp(metatileBehavior) == TRUE)

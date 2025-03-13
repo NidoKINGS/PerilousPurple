@@ -779,7 +779,7 @@ const struct MapConnection *GetMapConnectionAtPos(s16 x, s16 y)
         for (i = 0; i < count; i++, connection++)
         {
             direction = connection->direction;
-            if ((direction == CONNECTION_DIVE || direction == CONNECTION_EMERGE)
+            if ((direction == CONNECTION_DIVE || direction == CONNECTION_EMERGE || direction == CONNECTION_CLIFF || direction == CONNECTION_LAND)
              || (direction == CONNECTION_NORTH && y > MAP_OFFSET - 1)
              || (direction == CONNECTION_SOUTH && y < gMapHeader.mapLayout->height + MAP_OFFSET)
              || (direction == CONNECTION_WEST && x > MAP_OFFSET - 1)

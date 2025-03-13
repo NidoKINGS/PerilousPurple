@@ -174,6 +174,8 @@
 #define CONNECTION_EAST     4
 #define CONNECTION_DIVE     5
 #define CONNECTION_EMERGE   6
+#define CONNECTION_CLIFF    7
+#define CONNECTION_LAND     8
 
 #define SEASON_SPRING 0
 #define SEASON_SUMMER 1
