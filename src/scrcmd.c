@@ -31,7 +31,6 @@
 #include "money.h"
 #include "move.h"
 #include "mystery_event_script.h"
-#include "outfit_menu.h"
 #include "palette.h"
 #include "party_menu.h"
 #include "pokedex.h"
@@ -53,9 +52,10 @@
 #include "trainer_see.h"
 #include "tv.h"
 #include "window.h"
-#include "quests.h"
 #include "list_menu.h"
 #include "malloc.h"
+#include "outfit_menu.h"
+#include "quests.h"
 #include "constants/event_objects.h"
 
 typedef u16 (*SpecialFunc)(void);
@@ -1089,18 +1089,6 @@ bool8 ScrCmd_setdivewarp(struct ScriptContext *ctx)
     Script_RequestEffects(SCREFF_V1);
 
     SetFixedDiveWarp(mapGroup, mapNum, warpId, x, y);
-    return FALSE;
-}
-
-bool8 ScrCmd_setcliffwarp(struct ScriptContext *ctx)
-{
-    u8 mapGroup = ScriptReadByte(ctx);
-    u8 mapNum = ScriptReadByte(ctx);
-    u8 warpId = ScriptReadByte(ctx);
-    u16 x = VarGet(ScriptReadHalfword(ctx));
-    u16 y = VarGet(ScriptReadHalfword(ctx));
-
-    SetFixedCliffWarp(mapGroup, mapNum, warpId, x, y);
     return FALSE;
 }
 
@@ -3017,6 +3005,156 @@ bool8 ScrCmd_warpwhitefade(struct ScriptContext *ctx)
     return TRUE;
 }
 
+void ScriptSetDoubleBattleFlag(struct ScriptContext *ctx)
+{
+    Script_RequestEffects(SCREFF_V1);
+
+    sIsScriptedWildDouble = TRUE;
+}
+
+bool8 ScrCmd_removeallitem(struct ScriptContext *ctx)
+{
+    u32 itemId = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
+
+    u32 count = CountTotalItemQuantityInBag(itemId);
+    gSpecialVar_Result = count;
+    RemoveBagItem(itemId, count);
+
+    return FALSE;
+}
+
+bool8 ScrCmd_getobjectxy(struct ScriptContext *ctx)
+{
+    u32 localId = VarGet(ScriptReadHalfword(ctx));
+    u32 useTemplate = VarGet(ScriptReadHalfword(ctx));
+    u32 varIdX = ScriptReadHalfword(ctx);
+    u32 varIdY = ScriptReadHalfword(ctx);
+
+    Script_RequestEffects(SCREFF_V1);
+    Script_RequestWriteVar(varIdX);
+    Script_RequestWriteVar(varIdY);
+
+    u16 *pX = GetVarPointer(varIdX);
+    u16 *pY = GetVarPointer(varIdY);
+    GetObjectPosition(pX, pY, localId, useTemplate);
+
+    return FALSE;
+}
+
+bool8 ScrCmd_checkobjectat(struct ScriptContext *ctx)
+{
+    u32 x = VarGet(ScriptReadHalfword(ctx)) + 7;
+    u32 y = VarGet(ScriptReadHalfword(ctx)) + 7;
+    u32 varId = ScriptReadHalfword(ctx);
+
+    Script_RequestEffects(SCREFF_V1);
+    Script_RequestWriteVar(varId);
+
+    u16 *varPointer = GetVarPointer(varId);
+
+    *varPointer = CheckObjectAtXY(x, y);
+
+    return FALSE;
+}
+
+bool8 Scrcmd_getsetpokedexflag(struct ScriptContext *ctx)
+{
+    u32 speciesId = SpeciesToNationalPokedexNum(VarGet(ScriptReadHalfword(ctx)));
+    u32 desiredFlag = VarGet(ScriptReadHalfword(ctx));
+
+    if (desiredFlag == FLAG_SET_CAUGHT || desiredFlag == FLAG_SET_SEEN)
+        Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
+    else
+        Script_RequestEffects(SCREFF_V1);
+
+    gSpecialVar_Result = GetSetPokedexFlag(speciesId, desiredFlag);
+
+    if (desiredFlag == FLAG_SET_CAUGHT)
+        GetSetPokedexFlag(speciesId, FLAG_SET_SEEN);
+
+    return FALSE;
+}
+
+bool8 Scrcmd_checkspecies(struct ScriptContext *ctx)
+{
+    u32 givenSpecies = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1);
+
+    gSpecialVar_Result = CheckPartyHasSpecies(givenSpecies);
+
+    return FALSE;
+}
+
+bool8 Scrcmd_checkspecies_choose(struct ScriptContext *ctx)
+{
+    u32 givenSpecies = VarGet(ScriptReadHalfword(ctx));
+
+    Script_RequestEffects(SCREFF_V1);
+
+    gSpecialVar_Result = (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES) == givenSpecies);
+
+    return FALSE;
+}
+
+bool8 Scrcmd_getobjectfacingdirection(struct ScriptContext *ctx)
+{
+    u32 objectId = VarGet(ScriptReadHalfword(ctx));
+    u32 varId = ScriptReadHalfword(ctx);
+
+    Script_RequestEffects(SCREFF_V1);
+    Script_RequestWriteVar(varId);
+
+    u16 *varPointer = GetVarPointer(varId);
+
+    *varPointer = gObjectEvents[GetObjectEventIdByLocalId(objectId)].facingDirection;
+
+    return FALSE;
+}
+
+bool8 ScrFunc_hidefollower(struct ScriptContext *ctx)
+{
+    bool16 wait = VarGet(ScriptReadHalfword(ctx));
+    struct ObjectEvent *obj;
+
+    if ((obj = ScriptHideFollower()) != NULL && wait)
+    {
+        sMovingNpcId = obj->localId;
+        sMovingNpcMapGroup = obj->mapGroup;
+        sMovingNpcMapNum = obj->mapNum;
+        SetupNativeScript(ctx, WaitForMovementFinish);
+    }
+
+    // Just in case, prevent `applymovement`
+    // from hiding the follower again
+    if (obj)
+        FlagSet(FLAG_SAFE_FOLLOWER_MOVEMENT);
+
+    // execute next script command with no delay
+    return TRUE;
+}
+
+void Script_EndTrainerCanSeeIf(struct ScriptContext *ctx)
+{
+    u8 condition = ScriptReadByte(ctx);
+    if (ctx->breakOnTrainerBattle && sScriptConditionTable[condition][ctx->comparisonResult] == 1)
+        StopScript(ctx);
+}
+
+bool8 ScrCmd_setcliffwarp(struct ScriptContext *ctx)
+{
+    u8 mapGroup = ScriptReadByte(ctx);
+    u8 mapNum = ScriptReadByte(ctx);
+    u8 warpId = ScriptReadByte(ctx);
+    u16 x = VarGet(ScriptReadHalfword(ctx));
+    u16 y = VarGet(ScriptReadHalfword(ctx));
+
+    SetFixedCliffWarp(mapGroup, mapNum, warpId, x, y);
+    return FALSE;
+}
+
 bool8 ScrCmd_questmenu(struct ScriptContext *ctx)
 {
     u8 caseId = ScriptReadByte(ctx);
@@ -3175,7 +3313,7 @@ bool8 ScrCmd_bufferoutfitstr(struct ScriptContext *ctx)
     return TRUE;
 }
 
-bool8 ScrCmd_pokemartoutfit(struct ScriptContext *ctx)
+/*bool8 ScrCmd_pokemartoutfit(struct ScriptContext *ctx)
 {
     const void *ptr = (void *)ScriptReadWord(ctx);
 
@@ -3183,142 +3321,4 @@ bool8 ScrCmd_pokemartoutfit(struct ScriptContext *ctx)
 
     ScriptContext_Stop();
     return TRUE;
-}
-
-void ScriptSetDoubleBattleFlag(struct ScriptContext *ctx)
-{
-    Script_RequestEffects(SCREFF_V1);
-
-    sIsScriptedWildDouble = TRUE;
-}
-
-bool8 ScrCmd_removeallitem(struct ScriptContext *ctx)
-{
-    u32 itemId = VarGet(ScriptReadHalfword(ctx));
-
-    Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
-
-    u32 count = CountTotalItemQuantityInBag(itemId);
-    gSpecialVar_Result = count;
-    RemoveBagItem(itemId, count);
-
-    return FALSE;
-}
-
-bool8 ScrCmd_getobjectxy(struct ScriptContext *ctx)
-{
-    u32 localId = VarGet(ScriptReadHalfword(ctx));
-    u32 useTemplate = VarGet(ScriptReadHalfword(ctx));
-    u32 varIdX = ScriptReadHalfword(ctx);
-    u32 varIdY = ScriptReadHalfword(ctx);
-
-    Script_RequestEffects(SCREFF_V1);
-    Script_RequestWriteVar(varIdX);
-    Script_RequestWriteVar(varIdY);
-
-    u16 *pX = GetVarPointer(varIdX);
-    u16 *pY = GetVarPointer(varIdY);
-    GetObjectPosition(pX, pY, localId, useTemplate);
-
-    return FALSE;
-}
-
-bool8 ScrCmd_checkobjectat(struct ScriptContext *ctx)
-{
-    u32 x = VarGet(ScriptReadHalfword(ctx)) + 7;
-    u32 y = VarGet(ScriptReadHalfword(ctx)) + 7;
-    u32 varId = ScriptReadHalfword(ctx);
-
-    Script_RequestEffects(SCREFF_V1);
-    Script_RequestWriteVar(varId);
-
-    u16 *varPointer = GetVarPointer(varId);
-
-    *varPointer = CheckObjectAtXY(x, y);
-
-    return FALSE;
-}
-
-bool8 Scrcmd_getsetpokedexflag(struct ScriptContext *ctx)
-{
-    u32 speciesId = SpeciesToNationalPokedexNum(VarGet(ScriptReadHalfword(ctx)));
-    u32 desiredFlag = VarGet(ScriptReadHalfword(ctx));
-
-    if (desiredFlag == FLAG_SET_CAUGHT || desiredFlag == FLAG_SET_SEEN)
-        Script_RequestEffects(SCREFF_V1 | SCREFF_SAVE);
-    else
-        Script_RequestEffects(SCREFF_V1);
-
-    gSpecialVar_Result = GetSetPokedexFlag(speciesId, desiredFlag);
-
-    if (desiredFlag == FLAG_SET_CAUGHT)
-        GetSetPokedexFlag(speciesId, FLAG_SET_SEEN);
-
-    return FALSE;
-}
-
-bool8 Scrcmd_checkspecies(struct ScriptContext *ctx)
-{
-    u32 givenSpecies = VarGet(ScriptReadHalfword(ctx));
-
-    Script_RequestEffects(SCREFF_V1);
-
-    gSpecialVar_Result = CheckPartyHasSpecies(givenSpecies);
-
-    return FALSE;
-}
-
-bool8 Scrcmd_checkspecies_choose(struct ScriptContext *ctx)
-{
-    u32 givenSpecies = VarGet(ScriptReadHalfword(ctx));
-
-    Script_RequestEffects(SCREFF_V1);
-
-    gSpecialVar_Result = (GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_SPECIES) == givenSpecies);
-
-    return FALSE;
-}
-
-bool8 Scrcmd_getobjectfacingdirection(struct ScriptContext *ctx)
-{
-    u32 objectId = VarGet(ScriptReadHalfword(ctx));
-    u32 varId = ScriptReadHalfword(ctx);
-
-    Script_RequestEffects(SCREFF_V1);
-    Script_RequestWriteVar(varId);
-
-    u16 *varPointer = GetVarPointer(varId);
-
-    *varPointer = gObjectEvents[GetObjectEventIdByLocalId(objectId)].facingDirection;
-
-    return FALSE;
-}
-
-bool8 ScrFunc_hidefollower(struct ScriptContext *ctx)
-{
-    bool16 wait = VarGet(ScriptReadHalfword(ctx));
-    struct ObjectEvent *obj;
-
-    if ((obj = ScriptHideFollower()) != NULL && wait)
-    {
-        sMovingNpcId = obj->localId;
-        sMovingNpcMapGroup = obj->mapGroup;
-        sMovingNpcMapNum = obj->mapNum;
-        SetupNativeScript(ctx, WaitForMovementFinish);
-    }
-
-    // Just in case, prevent `applymovement`
-    // from hiding the follower again
-    if (obj)
-        FlagSet(FLAG_SAFE_FOLLOWER_MOVEMENT);
-
-    // execute next script command with no delay
-    return TRUE;
-}
-
-void Script_EndTrainerCanSeeIf(struct ScriptContext *ctx)
-{
-    u8 condition = ScriptReadByte(ctx);
-    if (ctx->breakOnTrainerBattle && sScriptConditionTable[condition][ctx->comparisonResult] == 1)
-        StopScript(ctx);
-}
+}*/
