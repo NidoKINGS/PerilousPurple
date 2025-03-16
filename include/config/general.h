@@ -88,7 +88,7 @@
 
 // Config to toggle using the new shop menu.
 // Set this to either TRUE or FALSE.
-#define MUDSKIP_SHOP_UI                     TRUE
+#define MUDSKIP_SHOP_UI                     FALSE
 
 #define MUDSKIP_OUTFIT_SYSTEM
 
