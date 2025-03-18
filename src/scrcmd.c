@@ -30,6 +30,7 @@
 #include "menu.h"
 #include "money.h"
 #include "move.h"
+#include "new_shop.h"
 #include "mystery_event_script.h"
 #include "palette.h"
 #include "party_menu.h"
@@ -2493,10 +2494,18 @@ bool8 ScrCmd_dowildbattle(struct ScriptContext *ctx)
 bool8 ScrCmd_pokemart(struct ScriptContext *ctx)
 {
     const void *ptr = (void *)ScriptReadWord(ctx);
+    bool16 useVariablePrices = ScriptReadHalfword(ctx);
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
-
-    CreatePokemartMenu(ptr);
+    
+    if (useVariablePrices)
+    {
+        NewShop_CreateVariablePokemartMenu(ptr);
+    }
+    else
+    {
+        NewShop_CreatePokemartMenu(ptr);
+    }
     ScriptContext_Stop();
     return TRUE;
 }

@@ -30,6 +30,7 @@
 #include "map_name_popup.h"
 #include "menu.h"
 #include "money.h"
+#include "new_shop.h"
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
@@ -654,7 +655,11 @@ void ChooseBerryForMachine(void (*exitCallback)(void))
 
 void CB2_GoToSellMenu(void)
 {
+    #ifdef MUDSKIP_SHOP_UI
+    GoToBagMenu(ITEMMENULOCATION_SHOP, POCKETS_COUNT, CB2_ExitSellNewShopMenu);
+    #else
     GoToBagMenu(ITEMMENULOCATION_SHOP, POCKETS_COUNT, CB2_ExitSellMenu);
+    #endif // MUDSKIP_SHOP_UI
 }
 
 void CB2_GoToItemDepositMenu(void)

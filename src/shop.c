@@ -22,6 +22,8 @@
 #include "menu_helpers.h"
 #include "money.h"
 #include "move.h"
+#include "new_shop.h"
+#include "outfit_menu.h"
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
@@ -68,6 +70,10 @@ enum {
 
 enum {
     MART_TYPE_NORMAL,
+    #ifdef MUDSKIP_OUTFIT_SYSTEM
+    MART_TYPE_OUTFIT,
+    #endif // MUDSKIP_OUTFIT_SYSTEM
+    MART_TYPE_VARIABLE,
     MART_TYPE_DECOR,
     MART_TYPE_DECOR2,
 };
