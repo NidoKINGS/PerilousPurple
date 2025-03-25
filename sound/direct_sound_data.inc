@@ -3088,6 +3088,12 @@ Cry_Lopunny::
 Cry_LopunnyMega::
 	.incbin "sound/direct_sound_samples/cries/lopunny_mega.bin"
 .endif @ P_MEGA_EVOLUTIONS
+
+.if P_CORDISIAN_FORMS == TRUE
+	.align 2
+Cry_Buneary_Cordisian::
+	.incbin "sound/direct_sound_samples/cries/buneary.bin"
+.endif @ P_CORDISIAN_FORMS
 .endif @ P_FAMILY_BUNEARY
 
 .if P_FAMILY_GLAMEOW == TRUE

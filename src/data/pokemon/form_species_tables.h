@@ -1035,6 +1035,14 @@ static const u16 sGastrodonFormSpeciesIdTable[] = {
 #endif //P_FAMILY_SHELLOS
 
 #if P_FAMILY_BUNEARY
+static const u16 sBunearyFormSpeciesIdTable[] = {
+    SPECIES_BUNEARY,
+#if P_CORDISIAN_FORMS
+    SPECIES_BUNEARY_CORDISIAN,
+#endif
+    FORM_SPECIES_END,
+};
+
 static const u16 sLopunnyFormSpeciesIdTable[] = {
     SPECIES_LOPUNNY,
 #if P_MEGA_EVOLUTIONS

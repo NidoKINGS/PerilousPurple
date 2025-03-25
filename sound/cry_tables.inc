@@ -1152,6 +1152,9 @@ gCryTable::
 .if P_FAMILY_BUNEARY == TRUE
 	cry Cry_Buneary
 	cry Cry_Lopunny
+.if P_CORDISIAN_FORMS == TRUE
+	cry Cry_Buneary_Cordisian
+.endif @ P_CORDISIAN_FORMS
 .if P_MEGA_EVOLUTIONS == TRUE
 	cry Cry_LopunnyMega
 .endif @ P_MEGA_EVOLUTIONS
@@ -3580,6 +3583,9 @@ gCryTable_Reverse::
 .if P_FAMILY_BUNEARY == TRUE
 	cry_reverse Cry_Buneary
 	cry_reverse Cry_Lopunny
+.if P_CORDISIAN_FORMS == TRUE
+	cry_reverse Cry_Buneary_Cordisian
+.endif @ P_CORDISIAN_FORMS
 .if P_MEGA_EVOLUTIONS == TRUE
 	cry_reverse Cry_LopunnyMega
 .endif @ P_MEGA_EVOLUTIONS

@@ -3246,10 +3246,18 @@ static const struct SpriteFrameImage sPicTable_Buneary[] = {
 static const struct SpriteFrameImage sPicTable_Lopunny[] = {
     overworld_ascending_frames(gObjectEventPic_Lopunny, 4, 4),
 };
+
+#if P_CORDISIAN_FORMS
+static const struct SpriteFrameImage sPicTable_BunearyCordisian[] = {
+    overworld_ascending_frames(gObjectEventPic_BunearyCordisian, 4, 4),
+};
+#endif //P_CORDISIAN_FORMS
+
 #if P_MEGA_EVOLUTIONS
 static const struct SpriteFrameImage sPicTable_LopunnyMega[] = {
     overworld_ascending_frames(gObjectEventPic_LopunnyMega, 4, 4),
 };
+
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_BUNEARY
 

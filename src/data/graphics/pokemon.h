@@ -14825,6 +14825,25 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
+#if P_CORDISIAN_FORMS
+    const u32 gMonFrontPic_BunearyCordisian[] = INCBIN_U32("graphics/pokemon/buneary/cordisian/anim_front.4bpp.lz");
+    const u32 gMonPalette_BunearyCordisian[] = INCBIN_U32("graphics/pokemon/buneary/cordisian/normal.gbapal.lz");
+    const u32 gMonBackPic_BunearyCordisian[] = INCBIN_U32("graphics/pokemon/buneary/cordisian/back.4bpp.lz");
+    const u32 gMonShinyPalette_BunearyCordisian[] = INCBIN_U32("graphics/pokemon/buneary/cordisian/shiny.gbapal.lz");
+    const u8 gMonIcon_BunearyCordisian[] = INCBIN_U8("graphics/pokemon/buneary/cordisian/icon.4bpp");
+#if P_FOOTPRINTS
+    const u8 gMonFootprint_BunearyCordisian[] = INCBIN_U8("graphics/pokemon/buneary/cordisian/footprint.1bpp");
+#endif //P_FOOTPRINTS
+#if OW_POKEMON_OBJECT_EVENTS
+    const u32 gObjectEventPic_BunearyCordisian[] = INCBIN_COMP("graphics/pokemon/buneary/cordisian/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+    const u32 gOverworldPalette_BunearyCordisian[] = INCBIN_U32("graphics/pokemon/buneary/cordisian/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_BunearyCordisian[] = INCBIN_U32("graphics/pokemon/buneary/cordisian/overworld_shiny.gbapal.lz");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
+
+#endif //P_CORDISIAN_FORMS
+
 #if P_MEGA_EVOLUTIONS
     const u32 gMonFrontPic_LopunnyMega[] = INCBIN_U32("graphics/pokemon/lopunny/mega/front.4bpp.lz");
     const u32 gMonPalette_LopunnyMega[] = INCBIN_U32("graphics/pokemon/lopunny/mega/normal.gbapal.lz");
@@ -14838,6 +14857,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gShinyOverworldPalette_LopunnyMega[] = INCBIN_U32("graphics/pokemon/lopunny/mega/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS && OW_BATTLE_ONLY_FORMS
+
 #endif //P_MEGA_EVOLUTIONS
 #endif //P_FAMILY_BUNEARY
 

@@ -244,4 +244,72 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.perfectIVCount = NUM_STATS,
     },
     */
+
+    [SPECIES_BUNEARY_CORDISIAN] =
+    {
+        .baseHP        = 55,
+        .baseAttack    = 66,
+        .baseDefense   = 44,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 44,
+        .baseSpDefense = 56,
+        .types = MON_TYPES(TYPE_NORMAL, TYPE_ICE),
+        .catchRate = 190,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 70 : 84,
+        .evYield_Speed = 1,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 0,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE),
+        .abilities = { ABILITY_RUN_AWAY, ABILITY_KLUTZ, ABILITY_LIMBER },
+        .bodyColor = BODY_COLOR_GRAY,
+        .speciesName = _("Buneary"),
+        .cryId = CRY_BUNEARY_CORDISIAN,
+        .natDexNum = NATIONAL_DEX_BUNEARY,
+        .categoryName = _("Rabbit"),
+        .height = 4,
+        .weight = 55,
+        .description = COMPOUND_STRING(
+            "You can tell how it feels by the way\n"
+            "it rolls its ears. When it's scared,\n"
+            "both ears are rolled up. When it senses\n"
+            "danger, it perks them up."),
+        .pokemonScale = 491,
+        .pokemonOffset = 16,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_BunearyCordisian,
+        .frontPicSize = MON_COORDS_SIZE(32, 64),
+        .frontPicYOffset = 9,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 35),
+            ANIMCMD_FRAME(0, 10),
+        ),
+        .frontAnimId = ANIM_H_JUMPS_V_STRETCH,
+        .backPic = gMonBackPic_BunearyCordisian,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 4,
+        .backAnimId = BACK_ANIM_CONCAVE_ARC_SMALL,
+        .palette = gMonPalette_BunearyCordisian,
+        .shinyPalette = gMonShinyPalette_BunearyCordisian,
+        .iconSprite = gMonIcon_BunearyCordisian,
+        .iconPalIndex = 3,
+        SHADOW(3, 5, SHADOW_SIZE_S)
+        FOOTPRINT(Buneary)
+        OVERWORLD(
+            sPicTable_BunearyCordisian,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_BunearyCordisian,
+            gShinyOverworldPalette_BunearyCordisian
+        )
+        .levelUpLearnset = sBunearyCordisianLevelUpLearnset,
+        .teachableLearnset = sBunearyCordisianTeachableLearnset,
+        .eggMoveLearnset = sBunearyCordisianEggMoveLearnset,
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LOPUNNY}),
+        .formSpeciesIdTable = sBunearyFormSpeciesIdTable,
+    }
 };
