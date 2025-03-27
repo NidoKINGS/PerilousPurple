@@ -854,7 +854,7 @@ static const struct OamData sOamData_RelearnPrompt =
 static const struct CompressedSpriteSheet sSpriteSheet_RelearnPrompt =
 {
     .data = sRelearnPrompt_Gfx,
-    .size = 64*32,
+    .size = 64*32/2,
     .tag = TAG_RELEARN_PROMPT,
 };
 
@@ -4783,12 +4783,7 @@ static void ShowCategoryIcon(u16 move)
     
     gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_CATEGORY]].invisible = FALSE;
 
-    if (IsBattleMoveSpecial(move))
-        StartSpriteAnim(&gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_CATEGORY]], CATEGORY_ICON_SPECIAL);
-    else if (IsBattleMovePhysical(move))
-        StartSpriteAnim(&gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_CATEGORY]], CATEGORY_ICON_PHYSICAL);
-    else
-        StartSpriteAnim(&gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_CATEGORY]], CATEGORY_ICON_STATUS);
+    StartSpriteAnim(&gSprites[sMonSummaryScreen->spriteIds[SPRITE_ARR_ID_CATEGORY]], GetBattleMoveCategory(move));
 }
 
 static void DestroyCategoryIcon(void)

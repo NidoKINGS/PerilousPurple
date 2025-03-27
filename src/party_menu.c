@@ -150,6 +150,12 @@ enum {
 };
 
 enum {
+    PARTY_BOX_LEFT_COLUMN,
+    PARTY_BOX_RIGHT_COLUMN,
+    PARTY_BOX_EQUAL_COLUMN //Custom party menu
+};
+
+enum {
     TAG_POKEBALL = 1200,
     TAG_POKEBALL_SMALL,
     TAG_STATUS_ICONS,
@@ -507,7 +513,10 @@ static void CursorCb_CatalogFan(u8);
 static void CursorCb_CatalogMower(u8);
 static void CursorCb_ChangeForm(u8);
 static void CursorCb_ChangeAbility(u8);
+static bool8 SetUpFieldMove_Surf(void);
 static bool8 SetUpFieldMove_Fly(void);
+static bool8 SetUpFieldMove_Waterfall(void);
+static bool8 SetUpFieldMove_Dive(void);
 void TryItemHoldFormChange(struct Pokemon *mon);
 static void ShowMoveSelectWindow(u8 slot);
 static void Task_HandleWhichMoveInput(u8 taskId);
@@ -2497,6 +2506,7 @@ static void BlitBitmapToPartyWindow_Equal(u8 windowId, u8 x, u8 y, u8 width, u8 
     else
         BlitBitmapToPartyWindow(windowId, sEqualMainSlotTileNums_Egg, 14, x, y, width, height);
 }
+
 static void DrawEmptySlot_Equal(u8 windowId)
 {
     BlitBitmapToPartyWindow(windowId, sEqualEmptySlotTileNums, 14, 0, 0, 14, 5);
@@ -2508,8 +2518,6 @@ static void DrawEmptySlot_Equal(u8 windowId)
     LoadPalette(GetPartyMenuPalBufferPtr(paletteIds[1]), paletteOffsets[1] + palOffset, PLTT_SIZEOF(1));  \
     LoadPalette(GetPartyMenuPalBufferPtr(paletteIds[2]), paletteOffsets[2] + palOffset, PLTT_SIZEOF(1));  \
 }
-
-
 
 static void LoadPartyBoxPalette(struct PartyMenuBox *menuBox, u8 palFlags)
 {
@@ -2603,7 +2611,6 @@ static void DisplayPartyPokemonBarDetail2(u8 windowId, const u8 *str, u8 color, 
     AddTextPrinterParameterized3(windowId, FONT_SMALL, align[0] + 4, align[1], sFontColorTable[color], 0, str);
 }
 
-
 static void DisplayPartyPokemonBarDetailToFit(u8 windowId, const u8 *str, u8 color, const u8 *align, u32 width)
 {
     AddTextPrinterParameterized3(windowId, GetFontIdToFit(str, FONT_SMALL, 0, width), align[0], align[1], sFontColorTable[color], 0, str);
@@ -2626,10 +2633,14 @@ static void DisplayPartyPokemonLevelCheck(struct Pokemon *mon, struct PartyMenuB
 {
     if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE)
     {
-        if (c != 0)
-            menuBox->infoRects->blitFunc(menuBox->windowId, menuBox->infoRects->dimensions[4] >> 3, (menuBox->infoRects->dimensions[5] >> 3), (menuBox->infoRects->dimensions[6] >> 3) + 8, (menuBox->infoRects->dimensions[7] >> 3) + 4, FALSE);
-        if (c != 2)
-            DisplayPartyPokemonLevel(GetMonData(mon, MON_DATA_LEVEL), menuBox);
+        u8 ailment = GetMonAilment(mon);
+        if (ailment == AILMENT_NONE || ailment == AILMENT_PKRS)
+        {
+            if (c != 0)
+                menuBox->infoRects->blitFunc(menuBox->windowId, menuBox->infoRects->dimensions[4] >> 3, (menuBox->infoRects->dimensions[5] >> 3) + 1, menuBox->infoRects->dimensions[6] >> 3, menuBox->infoRects->dimensions[7] >> 3, FALSE);
+            if (c != 2)
+                DisplayPartyPokemonLevel(GetMonData(mon, MON_DATA_LEVEL), menuBox);
+        }
     }
 }
 
@@ -2777,9 +2788,9 @@ static void DisplayPartyPokemonDescriptionText(u8 stringID, struct PartyMenuBox 
 {
     if (c)
     {
-        int width = ((menuBox->infoRects->descTextLeft % 8) + menuBox->infoRects->descTextWidth + 7) / 8 - 1;
-        int height = ((menuBox->infoRects->descTextTop % 8) + menuBox->infoRects->descTextHeight + 7) / 8 - 1;
-        menuBox->infoRects->blitFunc(menuBox->windowId, menuBox->infoRects->descTextLeft >> 3, (menuBox->infoRects->descTextTop >> 3)+1, width, height, TRUE);
+        int width = ((menuBox->infoRects->descTextLeft % 8) + menuBox->infoRects->descTextWidth + 7) / 8;
+        int height = ((menuBox->infoRects->descTextTop % 8) + menuBox->infoRects->descTextHeight + 7) / 8;
+        menuBox->infoRects->blitFunc(menuBox->windowId, menuBox->infoRects->descTextLeft >> 3, menuBox->infoRects->descTextTop >> 3, width, height, TRUE);
     }
     if (c != 2)
         AddTextPrinterParameterized3(menuBox->windowId, FONT_NORMAL, menuBox->infoRects->descTextLeft, menuBox->infoRects->descTextTop, sFontColorTable[0], 0, sDescriptionStringTable[stringID]);
@@ -2977,6 +2988,7 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
             if (GetMonData(&mons[slotId], i + MON_DATA_MOVE1) == sFieldMoves[j])
                 AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, j + MENU_FIELD_MOVES);
         }
+        break;
     }
 
     if (!InBattlePike())
@@ -4223,6 +4235,23 @@ static void DisplayCantUseFlashMessage(void)
         DisplayPartyMenuStdMessage(PARTY_MSG_CANT_USE_HERE);
 }
 
+static void FieldCallback_Surf(void)
+{
+    gFieldEffectArguments[0] = GetCursorSelectionMonId();
+    FieldEffectStart(FLDEFF_USE_SURF);
+}
+
+static bool8 SetUpFieldMove_Surf(void)
+{
+    if (PartyHasMonWithSurf() == TRUE && IsPlayerFacingSurfableFishableWater() == TRUE)
+    {
+        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
+        gPostMenuFieldCallback = FieldCallback_Surf;
+        return TRUE;
+    }
+    return FALSE;
+}
+
 static void DisplayCantUseSurfMessage(void)
 {
     if (TestPlayerAvatarFlags(PLAYER_AVATAR_FLAG_SURFING))
@@ -4242,6 +4271,44 @@ static bool8 SetUpFieldMove_Fly(void)
 void CB2_ReturnToPartyMenuFromFlyMap(void)
 {
     InitPartyMenu(PARTY_MENU_TYPE_FIELD, PARTY_LAYOUT_SINGLE, PARTY_ACTION_CHOOSE_MON, TRUE, PARTY_MSG_CHOOSE_MON, Task_HandleChooseMonInput, CB2_ReturnToFieldWithOpenMenu);
+}
+
+static void FieldCallback_Waterfall(void)
+{
+    gFieldEffectArguments[0] = GetCursorSelectionMonId();
+    FieldEffectStart(FLDEFF_USE_WATERFALL);
+}
+
+static bool8 SetUpFieldMove_Waterfall(void)
+{
+    s16 x, y;
+
+    GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
+    if (MetatileBehavior_IsWaterfall(MapGridGetMetatileBehaviorAt(x, y)) == TRUE && IsPlayerSurfingNorth() == TRUE)
+    {
+        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
+        gPostMenuFieldCallback = FieldCallback_Waterfall;
+        return TRUE;
+    }
+    return FALSE;
+}
+
+static void FieldCallback_Dive(void)
+{
+    gFieldEffectArguments[0] = GetCursorSelectionMonId();
+    FieldEffectStart(FLDEFF_USE_DIVE);
+}
+
+static bool8 SetUpFieldMove_Dive(void)
+{
+    gFieldEffectArguments[1] = TrySetDiveWarp();
+    if (gFieldEffectArguments[1] != 0)
+    {
+        gFieldCallback2 = FieldCallback_PrepareFadeInFromMenu;
+        gPostMenuFieldCallback = FieldCallback_Dive;
+        return TRUE;
+    }
+    return FALSE;
 }
 
 static void CreatePartyMonIconSprite(struct Pokemon *mon, struct PartyMenuBox *menuBox, u32 slot)
@@ -4436,10 +4503,7 @@ static void SpriteCB_HeldItem(struct Sprite *sprite)
 static void CreatePartyMonPokeballSprite(struct Pokemon *mon, struct PartyMenuBox *menuBox)
 {
     if (GetMonData(mon, MON_DATA_SPECIES) != SPECIES_NONE)
-    {
         menuBox->pokeballSpriteId = CreateSprite(&sSpriteTemplate_MenuPokeball, menuBox->spriteCoords[6], menuBox->spriteCoords[7], 8);
-        gSprites[menuBox->pokeballSpriteId].invisible = TRUE;
-    }
 }
 
 static void CreatePartyMonPokeballSpriteParameterized(u16 species, struct PartyMenuBox *menuBox)
@@ -4448,7 +4512,6 @@ static void CreatePartyMonPokeballSpriteParameterized(u16 species, struct PartyM
     {
         menuBox->pokeballSpriteId = CreateSprite(&sSpriteTemplate_MenuPokeball, menuBox->spriteCoords[6], menuBox->spriteCoords[7], 8);
         gSprites[menuBox->pokeballSpriteId].oam.priority = 0;
-        gSprites[menuBox->pokeballSpriteId].invisible = TRUE;
     }
 }
 
@@ -4456,7 +4519,7 @@ static void CreatePartyMonPokeballSpriteParameterized(u16 species, struct PartyM
 static u8 CreatePokeballButtonSprite(u8 x, u8 y)
 {
     u8 spriteId = CreateSprite(&sSpriteTemplate_MenuPokeball, x, y, 8);
-    gSprites[spriteId].invisible = TRUE;
+
     gSprites[spriteId].oam.priority = 2;
     return spriteId;
 }

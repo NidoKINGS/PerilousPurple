@@ -247,12 +247,12 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
     [SPECIES_BUNEARY_CORDISIAN] =
     {
-        .baseHP        = 55,
-        .baseAttack    = 66,
-        .baseDefense   = 44,
-        .baseSpeed     = 85,
-        .baseSpAttack  = 44,
-        .baseSpDefense = 56,
+        .baseHP        = 60,
+        .baseAttack    = 70,
+        .baseDefense   = 54,
+        .baseSpeed     = 80,
+        .baseSpAttack  = 40,
+        .baseSpDefense = 46,
         .types = MON_TYPES(TYPE_NORMAL, TYPE_ICE),
         .catchRate = 190,
         .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 70 : 84,
@@ -262,7 +262,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .friendship = 0,
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE),
-        .abilities = { ABILITY_RUN_AWAY, ABILITY_KLUTZ, ABILITY_LIMBER },
+        .abilities = { ABILITY_RUN_AWAY, ABILITY_FUR_COAT, ABILITY_TECHNICIAN},
         .bodyColor = BODY_COLOR_GRAY,
         .speciesName = _("Buneary"),
         .cryId = CRY_BUNEARY_CORDISIAN,
@@ -271,10 +271,10 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .height = 4,
         .weight = 55,
         .description = COMPOUND_STRING(
-            "You can tell how it feels by the way\n"
-            "it rolls its ears. When it's scared,\n"
-            "both ears are rolled up. When it senses\n"
-            "danger, it perks them up."),
+            "Commonly found hidden in snow banks,\n"
+            "its not afraid to defend its territory.\n"
+            "While accustomed to colder weather, it\n"
+            "will warm up to friendly trainers."),
         .pokemonScale = 491,
         .pokemonOffset = 16,
         .trainerScale = 256,
