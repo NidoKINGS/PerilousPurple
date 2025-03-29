@@ -1045,16 +1045,15 @@ static const u16 sBunearyFormSpeciesIdTable[] = {
 
 static const u16 sLopunnyFormSpeciesIdTable[] = {
     SPECIES_LOPUNNY,
-#if P_MEGA_EVOLUTIONS
-    SPECIES_LOPUNNY_MEGA,
-#endif
-    FORM_SPECIES_END,
-    
+
 #if P_CORDISIAN_FORMS
     SPECIES_LOPUNNY_CORDISIAN,
 #endif
     FORM_SPECIES_END,
-
+#if P_MEGA_EVOLUTIONS
+    SPECIES_LOPUNNY_MEGA,
+#endif
+    FORM_SPECIES_END,    
 };
 #endif //P_FAMILY_BUNEARY
 

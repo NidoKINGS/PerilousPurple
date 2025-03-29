@@ -309,8 +309,9 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .levelUpLearnset = sBunearyCordisianLevelUpLearnset,
         .teachableLearnset = sBunearyCordisianTeachableLearnset,
         .eggMoveLearnset = sBunearyCordisianEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LOPUNNY}),
+        .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LOPUNNY_CORDISIAN}),
         .formSpeciesIdTable = sBunearyFormSpeciesIdTable,
+        .formChangeTable = sBunearyFormChangeTable,
     },
 
     [SPECIES_LOPUNNY_CORDISIAN] =

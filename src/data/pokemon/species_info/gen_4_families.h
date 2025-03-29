@@ -3335,6 +3335,8 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         .teachableLearnset = sBunearyTeachableLearnset,
         .eggMoveLearnset = sBunearyEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LOPUNNY}),
+        .formSpeciesIdTable = sBunearyFormSpeciesIdTable,
+        .formChangeTable = sBunearyFormChangeTable,
     },
 
     [SPECIES_LOPUNNY] =
