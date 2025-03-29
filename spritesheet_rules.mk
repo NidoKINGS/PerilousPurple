@@ -2481,6 +2481,9 @@ $(POKEMONGFXDIR)/lopunny/mega/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/buneary/cordisian/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(POKEMONGFXDIR)/lopunny/cordisian/overworld.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(POKEMONGFXDIR)/mismagius/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 

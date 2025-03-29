@@ -1154,6 +1154,7 @@ gCryTable::
 	cry Cry_Lopunny
 .if P_CORDISIAN_FORMS == TRUE
 	cry Cry_Buneary_Cordisian
+	cry Cry_Lopunny_Cordisian
 .endif @ P_CORDISIAN_FORMS
 .if P_MEGA_EVOLUTIONS == TRUE
 	cry Cry_LopunnyMega
@@ -3585,6 +3586,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_Lopunny
 .if P_CORDISIAN_FORMS == TRUE
 	cry_reverse Cry_Buneary_Cordisian
+	cry_reverse Cry_Lopunny_Cordisian
 .endif @ P_CORDISIAN_FORMS
 .if P_MEGA_EVOLUTIONS == TRUE
 	cry_reverse Cry_LopunnyMega

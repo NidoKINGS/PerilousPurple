@@ -311,5 +311,73 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .eggMoveLearnset = sBunearyCordisianEggMoveLearnset,
         .evolutions = EVOLUTION({EVO_FRIENDSHIP, 0, SPECIES_LOPUNNY}),
         .formSpeciesIdTable = sBunearyFormSpeciesIdTable,
-    }
+    },
+
+    [SPECIES_LOPUNNY_CORDISIAN] =
+    {
+        .baseHP        = 75,
+        .baseAttack    = 96,
+        .baseDefense   = 89,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 54,
+        .baseSpDefense = 76,
+        .types = MON_TYPES(TYPE_ICE, TYPE_FIGHTING),
+        .catchRate = 60,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 168 : 178,
+        .evYield_Speed = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = 140,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE),
+        .abilities = { ABILITY_CUTE_CHARM, ABILITY_KLUTZ, ABILITY_LIMBER },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Lopunny"),
+        .cryId = CRY_LOPUNNY_CORDISIAN,
+        .natDexNum = NATIONAL_DEX_LOPUNNY,
+        .categoryName = _("Rabbit"),
+        .height = 12,
+        .weight = 333,
+        .description = COMPOUND_STRING(
+            "Due to harsh weather conditions in\n"
+            "the mountain ranges where it roams,\n"
+            "its fur has hardened and ice covers\n"
+            "its feet strengthening its attacks."),
+        .pokemonScale = 282,
+        .pokemonOffset = 4,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_LopunnyCordisian,
+        .frontPicSize = MON_COORDS_SIZE(56, 56),
+        .frontPicYOffset = 4,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 20),
+            ANIMCMD_FRAME(0, 15),
+        ),
+        .frontAnimId = ANIM_SHRINK_GROW,
+        .backPic = gMonBackPic_LopunnyCordisian,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 5,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_LopunnyCordisian,
+        .shinyPalette = gMonShinyPalette_LopunnyCordisian,
+        .iconSprite = gMonIcon_LopunnyCordisian,
+        .iconPalIndex = 2,
+        SHADOW(0, 10, SHADOW_SIZE_S)
+        FOOTPRINT(Lopunny)
+        OVERWORLD(
+            sPicTable_LopunnyCordisian,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_LopunnyCordisian,
+            gShinyOverworldPalette_LopunnyCordisian
+        )
+        .levelUpLearnset = sLopunnyCordisianLevelUpLearnset,
+        .teachableLearnset = sLopunnyCordisianTeachableLearnset,
+        .formSpeciesIdTable = sLopunnyFormSpeciesIdTable,
+        .formChangeTable = sLopunnyFormChangeTable,
+    },
 };

@@ -14831,14 +14831,23 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gMonBackPic_BunearyCordisian[] = INCBIN_U32("graphics/pokemon/buneary/cordisian/back.4bpp.lz");
     const u32 gMonShinyPalette_BunearyCordisian[] = INCBIN_U32("graphics/pokemon/buneary/cordisian/shiny.gbapal.lz");
     const u8 gMonIcon_BunearyCordisian[] = INCBIN_U8("graphics/pokemon/buneary/cordisian/icon.4bpp");
+    const u32 gMonFrontPic_LopunnyCordisian[] = INCBIN_U32("graphics/pokemon/lopunny/cordisian/anim_front.4bpp.lz");
+    const u32 gMonPalette_LopunnyCordisian[] = INCBIN_U32("graphics/pokemon/lopunny/cordisian/normal.gbapal.lz");
+    const u32 gMonBackPic_LopunnyCordisian[] = INCBIN_U32("graphics/pokemon/lopunny/cordisian/back.4bpp.lz");
+    const u32 gMonShinyPalette_LopunnyCordisian[] = INCBIN_U32("graphics/pokemon/lopunny/cordisian/shiny.gbapal.lz");
+    const u8 gMonIcon_LopunnyCordisian[] = INCBIN_U8("graphics/pokemon/lopunny/cordisian/icon.4bpp");
 #if P_FOOTPRINTS
     const u8 gMonFootprint_BunearyCordisian[] = INCBIN_U8("graphics/pokemon/buneary/cordisian/footprint.1bpp");
+    const u8 gMonFootprint_LopunnyCordisian[] = INCBIN_U8("graphics/pokemon/lopunny/cordisian/footprint.1bpp");
 #endif //P_FOOTPRINTS
 #if OW_POKEMON_OBJECT_EVENTS
     const u32 gObjectEventPic_BunearyCordisian[] = INCBIN_COMP("graphics/pokemon/buneary/cordisian/overworld.4bpp");
+    const u32 gObjectEventPic_LopunnyCordisian[] = INCBIN_COMP("graphics/pokemon/lopunny/cordisian/overworld.4bpp");
 #if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
     const u32 gOverworldPalette_BunearyCordisian[] = INCBIN_U32("graphics/pokemon/buneary/cordisian/overworld_normal.gbapal.lz");
     const u32 gShinyOverworldPalette_BunearyCordisian[] = INCBIN_U32("graphics/pokemon/buneary/cordisian/overworld_shiny.gbapal.lz");
+    const u32 gOverworldPalette_LopunnyCordisian[] = INCBIN_U32("graphics/pokemon/lopunny/cordisian/overworld_normal.gbapal.lz");
+    const u32 gShinyOverworldPalette_LopunnyCordisian[] = INCBIN_U32("graphics/pokemon/lopunny/cordisian/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 

@@ -3093,6 +3093,11 @@ Cry_LopunnyMega::
 	.align 2
 Cry_Buneary_Cordisian::
 	.incbin "sound/direct_sound_samples/cries/buneary.bin"
+	
+	.align 2
+Cry_Lopunny_Cordisian::
+	.incbin "sound/direct_sound_samples/cries/lopunny.bin"
+
 .endif @ P_CORDISIAN_FORMS
 .endif @ P_FAMILY_BUNEARY
 

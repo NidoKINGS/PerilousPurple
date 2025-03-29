@@ -1049,6 +1049,12 @@ static const u16 sLopunnyFormSpeciesIdTable[] = {
     SPECIES_LOPUNNY_MEGA,
 #endif
     FORM_SPECIES_END,
+    
+#if P_CORDISIAN_FORMS
+    SPECIES_LOPUNNY_CORDISIAN,
+#endif
+    FORM_SPECIES_END,
+
 };
 #endif //P_FAMILY_BUNEARY
 
