@@ -114,7 +114,7 @@ static bool8 StartMenuBattlePyramidRetireCallback(void);
 static bool8 StartMenuBattlePyramidBagCallback(void);
 static bool8 QuestMenuCallback(void);
 static bool8 StartMenuDebugCallback(void);
-static bool8 StartMenuDexNavCallback(void);
+static bool8 DexNavMenuCallback(void); //Previously static bool8 StartMenuDexNavCallback(void);
 
 // Menu callbacks
 static bool8 SaveStartCallback(void);
@@ -211,7 +211,7 @@ static const struct MenuAction sStartMenuItems[] =
     [MENU_ACTION_PYRAMID_BAG]     = {gText_MenuBag,     {.u8_void = StartMenuBattlePyramidBagCallback}},
     [MENU_ACTION_QUEST_MENU]      = {sText_QuestMenu,   {.u8_void = QuestMenuCallback}},
     [MENU_ACTION_DEBUG]           = {sText_MenuDebug,   {.u8_void = StartMenuDebugCallback}},
-    [MENU_ACTION_DEXNAV]          = {gText_MenuDexNav,  {.u8_void = StartMenuDexNavCallback}},
+    [MENU_ACTION_DEXNAV]          = {gText_MenuDexNav,  {.u8_void = DexNavMenuCallback}}, //Previously     [MENU_ACTION_DEXNAV]          = {gText_MenuDexNav,  {.u8_void = StartMenuDexNavCallback}},
 };
 
 static const struct BgTemplate sBgTemplates_LinkBattleSave[] =
@@ -1564,9 +1564,9 @@ static bool8 QuestMenuCallback(void)
     return TRUE;
 }
 
-static bool8 StartMenuDexNavCallback(void)
+static bool8 DexNavMenuCallback(void) //Previously static bool8 StartMenuDexNavCallback(void)
 {
-    CreateTask(Task_OpenDexNavFromStartMenu, 0);
+    CreateTask(Task_DexNav_OpenFromStartMenu, 0); //Previously CreateTask(Task_OpenDexNavFromStartMenu, 0);
     return TRUE;
 }
 

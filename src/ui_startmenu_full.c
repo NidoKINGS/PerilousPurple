@@ -4,6 +4,7 @@
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
+#include "dexnav.h"
 #include "event_data.h"
 #include "field_weather.h"
 #include "gpu_regs.h"
@@ -117,6 +118,7 @@ static void PrintMapNameAndTime(void);
 static void CursorCallback(struct Sprite *sprite);
 static bool8 StartMenuDebugCallback(void);
 static bool8 QuestMenuCallback(void);
+static bool8 DexNavMenuCallback(void);
 
 //==========CONST=DATA==========//
 static const struct BgTemplate sStartMenuBgTemplates[] =
@@ -1443,6 +1445,18 @@ void Task_QuestMenu_OpenFromStartMenu(u8 taskId)
 	}
 }
 
+void Task_DexNav_OpenFromStartMenu(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        StartMenuFull_FreeResources();
+        PlayRainStoppingSoundEffect();
+        CleanupOverworldWindowsAndTilemaps();
+        DexNavGuiInit(CB2_ReturnToFullScreenStartMenu);
+        DestroyTask(taskId);
+    }
+}
+
 //
 //  Handle save Confirmation and then Leave to Overworld for Saving 
 //
@@ -1576,6 +1590,12 @@ static void Task_StartMenuFullMain(u8 taskId)
         BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
         gTasks[taskId].func = Task_QuestMenu_OpenFromStartMenu;
     }
+
+    if(JOY_NEW(L_BUTTON))
+    {
+        BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
+        gTasks[taskId].func = Task_DexNav_OpenFromStartMenu;
+    }
 /*#if (FLAG_CLOCK_MODE != 0)
     if (JOY_NEW(SELECT_BUTTON)) // switch between clock modes
     {
@@ -1601,5 +1621,11 @@ static void Task_StartMenuFullMain(u8 taskId)
 static bool8 QuestMenuCallback(void)
 {
     CreateTask(Task_QuestMenu_OpenFromStartMenu, 0);
+    return TRUE;
+}
+
+static bool8 DexNavMenuCallback(void)
+{
+    CreateTask(Task_DexNav_OpenFromStartMenu, 0);
     return TRUE;
 }

@@ -47,6 +47,7 @@
 #include "task.h"
 #include "text.h"
 #include "text_window.h"
+#include "ui_startmenu_full.h"
 #include "wild_encounter.h"
 #include "window.h"
 #include "constants/map_types.h"
@@ -2309,7 +2310,7 @@ static void DexNav_RunSetup(void)
 }
 
 // Entry point for the dexnav GUI
-static void DexNavGuiInit(MainCallback callback)
+/*static*/ void DexNavGuiInit(MainCallback callback)
 {
     if ((sDexNavUiDataPtr = AllocZeroed(sizeof(struct DexNavGUI))) == NULL)
     {
@@ -2332,7 +2333,7 @@ void Task_OpenDexNavFromStartMenu(u8 taskId)
     else if (!gPaletteFade.active)
     {
         CleanupOverworldWindowsAndTilemaps();
-        DexNavGuiInit(CB2_ReturnToFieldWithOpenMenu);
+        DexNavGuiInit(CB2_ReturnToFullScreenStartMenu); //Previously DexNavGuiInit(CB2_ReturnToFieldWithOpenMenu);
         DestroyTask(taskId);
     }
 }

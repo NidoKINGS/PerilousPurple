@@ -63,6 +63,8 @@
 #define DEXNAV_MASK_SPECIES         0x3FFF  // First 14 bits
 #define DEXNAV_MASK_ENVIRONMENT     0xC000  // Last two bit
 
+#include "ui_startmenu_full.h"
+
 void EndDexNavSearch(u8 taskId);
 void Task_OpenDexNavFromStartMenu(u8 taskId);
 bool8 TryStartDexNavSearch(void);
@@ -71,6 +73,8 @@ void ResetDexNavSearch(void);
 bool8 TryFindHiddenPokemon(void);
 u32 CalculateDexNavShinyRolls(void);
 void IncrementDexNavChain(void);
+void DexNavGuiInit(MainCallback);
+void Task_DexNav_OpenFromStartMenu(u8);
 
 extern bool8 gDexNavBattle;
 
