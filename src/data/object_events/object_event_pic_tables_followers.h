@@ -5114,6 +5114,9 @@ static const struct SpriteFrameImage sPicTable_LycanrocMidnight[] = {
 static const struct SpriteFrameImage sPicTable_LycanrocDusk[] = {
     overworld_ascending_frames(gObjectEventPic_LycanrocDusk, 4, 4),
 };
+static const struct SpriteFrameImage sPicTable_LycanrocDawn[] = {
+    overworld_ascending_frames(gObjectEventPic_LycanrocDawn, 4, 4),
+};
 #endif //P_FAMILY_ROCKRUFF
 
 #if P_FAMILY_WISHIWASHI

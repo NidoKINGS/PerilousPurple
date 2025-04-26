@@ -21313,6 +21313,19 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gShinyOverworldPalette_LycanrocDusk[] = INCBIN_U32("graphics/pokemon/lycanroc/dusk/overworld_shiny.gbapal.lz");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
+
+const u32 gMonFrontPic_LycanrocDawn[] = INCBIN_U32("graphics/pokemon/lycanroc/dawn/anim_front.4bpp.lz");
+const u32 gMonPalette_LycanrocDawn[] = INCBIN_U32("graphics/pokemon/lycanroc/dawn/normal.gbapal.lz");
+const u32 gMonBackPic_LycanrocDawn[] = INCBIN_U32("graphics/pokemon/lycanroc/dawn/back.4bpp.lz");
+const u32 gMonShinyPalette_LycanrocDawn[] = INCBIN_U32("graphics/pokemon/lycanroc/dawn/shiny.gbapal.lz");
+const u8 gMonIcon_LycanrocDawn[] = INCBIN_U8("graphics/pokemon/lycanroc/dawn/icon.4bpp");
+#if OW_POKEMON_OBJECT_EVENTS
+const u32 gObjectEventPic_LycanrocDawn[] = INCBIN_COMP("graphics/pokemon/lycanroc/dawn/overworld.4bpp");
+#if OW_PKMN_OBJECTS_SHARE_PALETTES == FALSE
+const u32 gOverworldPalette_LycanrocDawn[] = INCBIN_U32("graphics/pokemon/lycanroc/dawn/overworld_normal.gbapal.lz");
+const u32 gShinyOverworldPalette_LycanrocDawn[] = INCBIN_U32("graphics/pokemon/lycanroc/dawn/overworld_shiny.gbapal.lz");
+#endif //OW_PKMN_OBJECTS_SHARE_PALETTES
+#endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_FAMILY_ROCKRUFF
 
 #if P_FAMILY_WISHIWASHI

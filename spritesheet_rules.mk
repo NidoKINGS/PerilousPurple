@@ -3522,6 +3522,9 @@ $(POKEMONGFXDIR)/lycanroc/dusk/overworld.4bpp: %.4bpp: %.png
 $(POKEMONGFXDIR)/lycanroc/midnight/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 
+$(POKEMONGFXDIR)/lycanroc/dawn/overworld.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
+
 $(POKEMONGFXDIR)/wishiwashi/overworld.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 4 -mheight 4
 

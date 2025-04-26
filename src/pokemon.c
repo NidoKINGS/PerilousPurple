@@ -4543,6 +4543,10 @@ u16 GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode mode, u16 
                 if (GetTimeOfDay() == TIME_EVENING && evolutions[i].param <= level)
                     targetSpecies = evolutions[i].targetSpecies;
                 break;
+            case EVO_LEVEL_DAWN:
+                if (GetTimeOfDay() == TIME_MORNING && evolutions[i].param <= level)
+                    targetSpecies = evolutions[i].targetSpecies;
+                break;
             case EVO_LEVEL:
                 if (evolutions[i].param <= level)
                     targetSpecies = evolutions[i].targetSpecies;

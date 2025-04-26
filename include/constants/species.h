@@ -1639,8 +1639,9 @@
 #define SPECIES_MIMIKYU_TOTEM_BUSTED                    SPECIES_MIMIKYU_BUSTED_TOTEM
 #define SPECIES_BUNEARY_CORDISIAN                       1524
 #define SPECIES_LOPUNNY_CORDISIAN                       1525
+#define SPECIES_LYCANROC_DAWN                           1526
 
-#define SPECIES_EGG                                     (SPECIES_LOPUNNY_CORDISIAN + 1)
+#define SPECIES_EGG                                     (SPECIES_LYCANROC_DAWN + 1)
 
 #define NUM_SPECIES SPECIES_EGG
 

@@ -1804,6 +1804,7 @@ gCryTable::
 	cry Cry_LycanrocMidday
 	cry Cry_LycanrocMidnight
 	cry Cry_LycanrocDusk
+	cry Cry_LycanrocDawn
 .endif @ P_FAMILY_ROCKRUFF
 .if P_FAMILY_WISHIWASHI == TRUE
 	cry Cry_WishiwashiSolo
@@ -4236,6 +4237,7 @@ gCryTable_Reverse::
 	cry_reverse Cry_LycanrocMidday
 	cry_reverse Cry_LycanrocMidnight
 	cry_reverse Cry_LycanrocDusk
+	cry_reverse Cry_LycanrocDawn
 .endif @ P_FAMILY_ROCKRUFF
 .if P_FAMILY_WISHIWASHI == TRUE
 	cry_reverse Cry_WishiwashiSolo

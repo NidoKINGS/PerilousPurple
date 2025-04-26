@@ -4692,6 +4692,10 @@ Cry_LycanrocMidnight::
 	.align 2
 Cry_LycanrocDusk::
 	.incbin "sound/direct_sound_samples/cries/lycanroc_dusk.bin"
+
+	.align 2
+Cry_LycanrocDawn::
+	.incbin "sound/direct_sound_samples/cries/lycanroc_dusk.bin"
 .endif @ P_FAMILY_ROCKRUFF
 
 .if P_FAMILY_WISHIWASHI == TRUE

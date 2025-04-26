@@ -381,4 +381,70 @@ const struct SpeciesInfo gSpeciesInfo[] =
         .formSpeciesIdTable = sLopunnyFormSpeciesIdTable,
         .formChangeTable = sLopunnyFormChangeTable,
     },
+
+    [SPECIES_LYCANROC_DAWN] =
+    {
+        .baseHP        = 85,
+        .baseAttack    = 113,
+        .baseDefense   = 70,
+        .baseSpeed     = 94,
+        .baseSpAttack  = 55,
+        .baseSpDefense = 70,
+        .types = MON_TYPES(TYPE_ROCK),
+        .catchRate = 90,
+        .expYield = 170,
+        .evYield_Attack = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_TOUGH_CLAWS, ABILITY_NONE, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("Lycanroc"),
+        .cryId = CRY_LYCANROC_DAWN,
+        .natDexNum = NATIONAL_DEX_LYCANROC,
+        .categoryName = _("Wolf"),
+        .height = 8,
+        .weight = 250,
+        .description = COMPOUND_STRING(
+            "These Pokémon have both calm and\n"
+            "ferocious qualities. It's said that\n"
+            "this form of Lycanroc is the most\n"
+            "troublesome to raise."),
+        .pokemonScale = 366,
+        .pokemonOffset = 7,
+        .trainerScale = 257,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_LycanrocDawn,
+        .frontPicSize = MON_COORDS_SIZE(57, 58),
+        .frontPicYOffset = 6,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 40),
+            ANIMCMD_FRAME(0, 5),
+        ),
+        .frontAnimId = ANIM_V_SHAKE,
+        .backPic = gMonBackPic_LycanrocDawn,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 6,
+        .backAnimId = BACK_ANIM_V_SHAKE,
+        .palette = gMonPalette_LycanrocDawn,
+        .shinyPalette = gMonShinyPalette_LycanrocDawn,
+        .iconSprite = gMonIcon_LycanrocDawn,
+        .iconPalIndex = 4,
+        SHADOW(5, 7, SHADOW_SIZE_L)
+        FOOTPRINT(Lycanroc)
+        OVERWORLD(
+            sPicTable_LycanrocDawn,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_LycanrocDawn,
+            gShinyOverworldPalette_LycanrocDawn
+        )
+        .levelUpLearnset = sLycanrocDuskLevelUpLearnset,
+        .teachableLearnset = sLycanrocDuskTeachableLearnset,
+        .formSpeciesIdTable = sLycanrocFormSpeciesIdTable,
+    },
 };
