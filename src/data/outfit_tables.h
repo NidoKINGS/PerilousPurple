@@ -49,7 +49,7 @@ static const u8 sFrontierPassPlayerIcons_RSBrendanMay_Gfx[] = INCBIN_U8("graphic
 #define OBJ_EVENT_GFX_OUTFIT_RS_MAY_DECORATING OBJ_EVENT_GFX_MAY_DECORATING
 #define OBJ_EVENT_GFX_OUTFIT_RS_MAY_FIELD_MOVE OBJ_EVENT_GFX_MAY_FIELD_MOVE
 
-const struct Outfit gOutfits[OUTFIT_COUNT] =
+/*const struct Outfit gOutfits[OUTFIT_COUNT] =
 {
     [OUTFIT_NONE] = {
         .isHidden = TRUE
@@ -174,4 +174,4 @@ const struct Outfit gOutfits[OUTFIT_COUNT] =
         .iconsRM = { sRegionMapPlayerIcon_RSBrendanGfx, sRegionMapPlayerIcon_RSMayGfx },
         .iconsFP = sFrontierPassPlayerIcons_RSBrendanMay_Gfx,
     },
-};
+};*/

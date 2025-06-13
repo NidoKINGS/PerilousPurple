@@ -13,7 +13,7 @@ extern const struct SpritePalette gSpritePalette_CutGrass;
 extern struct MapPosition gPlayerFacingPosition;
 
 // escalator
-void StartEscalator(bool8 var);
+void StartEscalator(bool8 goingUp);
 void StopEscalator(void);
 bool8 IsEscalatorMoving(void);
 
@@ -54,5 +54,9 @@ bool8 FldEff_UseRockSmash(void);
 // headbutt
 bool8 FldEff_UseHeadbutt(void);
 bool8 SetUpFieldMove_Headbutt(void);
+
+// defog
+bool8 SetUpFieldMove_Defog(void);
+bool8 FldEff_Defog(void);
 
 #endif // GUARD_FLDEFF_H

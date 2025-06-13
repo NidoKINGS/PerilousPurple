@@ -1,4 +1,4 @@
-#ifndef GUARD_OUTFIT_MENU_H
+/*#ifndef GUARD_OUTFIT_MENU_H
 #define GUARD_OUTFIT_MENU_H
 
 void OpenOutfitMenu(MainCallback retCB);
@@ -17,3 +17,4 @@ bool8 IsPlayerWearingOutfit(u16 id);
 u32 GetOutfitPrice(u16 id);
 
 #endif //! GUARD_OUTFIT_MENU_H
+*/

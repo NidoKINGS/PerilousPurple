@@ -186,52 +186,52 @@ static const struct WindowTemplate sStartMenuWindowTemplates[] =
 //
 
 // Main Background
-static const u32 sStartMenuTiles[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tiles.4bpp.lz");
-static const u16 sStartMenuPalette[] = INCBIN_U16("graphics/ui_startmenu_full/menu.gbapal");
+const u32 sStartMenuTiles[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tiles.4bpp.lz");
+const u16 sStartMenuPalette[] = INCBIN_U16("graphics/ui_startmenu_full/menu.gbapal");
 
 //#if (FLAG_CLOCK_MODE != 0)
 //static const u32 sStartMenuTilemap[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tilemap_alt.bin.lz");
 //#else
-static const u32 sStartMenuTilemap[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tilemap.bin.lz");
+const u32 sStartMenuTilemap[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tilemap.bin.lz");
 //#endif
 
 // Alternate Main Background for Female Player
-static const u32 sStartMenuTilesAlt[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tiles_alt.4bpp.lz");
-static const u16 sStartMenuPaletteAlt[] = INCBIN_U16("graphics/ui_startmenu_full/menu_alt.gbapal");
+const u32 sStartMenuTilesAlt[] = INCBIN_U32("graphics/ui_startmenu_full/menu_tiles_alt.4bpp.lz");
+const u16 sStartMenuPaletteAlt[] = INCBIN_U16("graphics/ui_startmenu_full/menu_alt.gbapal");
 
 // Scrolling Background
-static const u32 sScrollBgTiles[] = INCBIN_U32("graphics/ui_startmenu_full/scroll_tiles.4bpp.lz");
-static const u32 sScrollBgTilemap[] = INCBIN_U32("graphics/ui_startmenu_full/scroll_tilemap.bin.lz");
-static const u16 sScrollBgPalette[] = INCBIN_U16("graphics/ui_startmenu_full/scroll_tiles.gbapal");
+const u32 sScrollBgTiles[] = INCBIN_U32("graphics/ui_startmenu_full/scroll_tiles.4bpp.lz");
+const u32 sScrollBgTilemap[] = INCBIN_U32("graphics/ui_startmenu_full/scroll_tilemap.bin.lz");
+const u16 sScrollBgPalette[] = INCBIN_U16("graphics/ui_startmenu_full/scroll_tiles.gbapal");
 
 // Cursor and IconBox
-static const u16 sCursor_Pal[] = INCBIN_U16("graphics/ui_startmenu_full/cursor.gbapal");
-static const u32 sCursor_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/cursor.4bpp.lz");
-static const u16 sCursor_PalAlt[] = INCBIN_U16("graphics/ui_startmenu_full/cursor_alt.gbapal");
+const u16 sCursor_Pal[] = INCBIN_U16("graphics/ui_startmenu_full/cursor.gbapal");
+const u32 sCursor_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/cursor.4bpp");
+const u16 sCursor_PalAlt[] = INCBIN_U16("graphics/ui_startmenu_full/cursor_alt.gbapal");
 
-static const u16 sIconBox_Pal[] = INCBIN_U16("graphics/ui_startmenu_full/icon_box.gbapal");
-static const u32 sIconBox_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/icon_box.4bpp.lz");
+const u16 sIconBox_Pal[] = INCBIN_U16("graphics/ui_startmenu_full/icon_box.gbapal");
+const u32 sIconBox_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/icon_box.4bpp");
 
 //HP Bar
-static const u8 sHPBar_100_Percent_Gfx[]  = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_100_Percent_Gfx.4bpp");
-static const u8 sHPBar_90_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_90_Percent_Gfx.4bpp");
-static const u8 sHPBar_80_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_80_Percent_Gfx.4bpp");
-static const u8 sHPBar_70_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_70_Percent_Gfx.4bpp");
-static const u8 sHPBar_60_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_60_Percent_Gfx.4bpp");
-static const u8 sHPBar_50_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_50_Percent_Gfx.4bpp");
-static const u8 sHPBar_40_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_40_Percent_Gfx.4bpp");
-static const u8 sHPBar_30_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_30_Percent_Gfx.4bpp");
-static const u8 sHPBar_20_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_20_Percent_Gfx.4bpp");
-static const u8 sHPBar_10_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_10_Percent_Gfx.4bpp");
-static const u8 sHPBar_0_Percent_Gfx[]    = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_0_Percent_Gfx.4bpp");
-static const u16 sHP_Pal[] = INCBIN_U16("graphics/ui_startmenu_full/hpbar_pal.gbapal");
-static const u16 sHP_PalAlt[] = INCBIN_U16("graphics/ui_startmenu_full/hpbar_pal_alt.gbapal");
+const u8 sHPBar_100_Percent_Gfx[]  = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_100_Percent_Gfx.4bpp");
+const u8 sHPBar_90_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_90_Percent_Gfx.4bpp");
+const u8 sHPBar_80_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_80_Percent_Gfx.4bpp");
+const u8 sHPBar_70_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_70_Percent_Gfx.4bpp");
+const u8 sHPBar_60_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_60_Percent_Gfx.4bpp");
+const u8 sHPBar_50_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_50_Percent_Gfx.4bpp");
+const u8 sHPBar_40_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_40_Percent_Gfx.4bpp");
+const u8 sHPBar_30_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_30_Percent_Gfx.4bpp");
+const u8 sHPBar_20_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_20_Percent_Gfx.4bpp");
+const u8 sHPBar_10_Percent_Gfx[]   = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_10_Percent_Gfx.4bpp");
+const u8 sHPBar_0_Percent_Gfx[]    = INCBIN_U8("graphics/ui_startmenu_full/sHPBar_0_Percent_Gfx.4bpp");
+const u16 sHP_Pal[] = INCBIN_U16("graphics/ui_startmenu_full/hpbar_pal.gbapal");
+const u16 sHP_PalAlt[] = INCBIN_U16("graphics/ui_startmenu_full/hpbar_pal_alt.gbapal");
 
 // greyed buttons
-static const u32 sGreyMenuButtonMap_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/map_dark_sprite.4bpp.lz");
-static const u32 sGreyMenuButtonDex_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/dex_dark_sprite.4bpp.lz");
-static const u32 sGreyMenuButtonParty_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/party_dark_sprite.4bpp.lz");
-static const u16 sGreyMenuButton_Pal[] = INCBIN_U16("graphics/ui_startmenu_full/menu_dark.gbapal");
+const u32 sGreyMenuButtonMap_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/map_dark_sprite.4bpp");
+const u32 sGreyMenuButtonDex_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/dex_dark_sprite.4bpp");
+const u32 sGreyMenuButtonParty_Gfx[] = INCBIN_U32("graphics/ui_startmenu_full/party_dark_sprite.4bpp");
+const u16 sGreyMenuButton_Pal[] = INCBIN_U16("graphics/ui_startmenu_full/menu_dark.gbapal");
 
 
 //
@@ -249,7 +249,7 @@ static const struct OamData sOamData_Cursor =
     .priority = 0,
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_Cursor =
+static const struct SpriteSheet sSpriteSheet_Cursor =
 {
     .data = sCursor_Gfx,
     .size = 64*32*4/2,
@@ -292,7 +292,7 @@ static const struct OamData sOamData_IconBox =
     .priority = 2,
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_IconBox =
+static const struct SpriteSheet sSpriteSheet_IconBox =
 {
     .data = sIconBox_Gfx,
     .size = 32*32*4/2,
@@ -404,12 +404,12 @@ static const union AnimCmd *const sSpriteTemplate_StatusCondition[] =
     sSpriteAnim_Blank
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_StatusIcons =
+static const struct SpriteSheet sSpriteSheet_StatusIcons =
 {
     gStatusGfx_Icons, 0x400, TAG_STATUS_ICONS
 };
 
-static const struct CompressedSpritePalette sSpritePalette_StatusIcons =
+static const struct SpritePalette sSpritePalette_StatusIcons =
 {
     gStatusPal_Icons, TAG_STATUS_ICONS
 };
@@ -437,21 +437,21 @@ static const struct OamData sOamData_GreyMenuButton =
     .priority = 1,
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_GreyMenuButtonMap =
+static const struct SpriteSheet sSpriteSheet_GreyMenuButtonMap =
 {
     .data = sGreyMenuButtonMap_Gfx,
     .size = 64*32*4/2,
     .tag = TAG_GREY_ICON_MAP,
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_GreyMenuButtonParty =
+static const struct SpriteSheet sSpriteSheet_GreyMenuButtonParty =
 {
     .data = sGreyMenuButtonParty_Gfx,
     .size = 64*32*4/2,
     .tag = TAG_GREY_ICON_PARTY,
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_GreyMenuButtonDex =
+static const struct SpriteSheet sSpriteSheet_GreyMenuButtonDex =
 {
     .data = sGreyMenuButtonDex_Gfx,
     .size = 64*32*4/2,
@@ -1162,16 +1162,16 @@ static bool8 StartMenuFull_LoadGraphics(void) // Load the Tilesets, Tilemaps, Sp
         }
         LoadPalette(sScrollBgPalette, 16, 16);
 
-        LoadCompressedSpriteSheet(&sSpriteSheet_IconBox);
+        LoadSpriteSheet(&sSpriteSheet_IconBox);
         LoadSpritePalette(&sSpritePal_IconBox);
-        LoadCompressedSpriteSheet(&sSpriteSheet_Cursor);
+        LoadSpriteSheet(&sSpriteSheet_Cursor);
         LoadSpritePalette(&cursorPal);
-        LoadCompressedSpriteSheet(&sSpriteSheet_StatusIcons);
-        LoadCompressedSpritePalette(&sSpritePalette_StatusIcons);
+        LoadSpriteSheet(&sSpriteSheet_StatusIcons);
+        LoadSpritePalette(&sSpritePalette_StatusIcons);
 
-        LoadCompressedSpriteSheet(&sSpriteSheet_GreyMenuButtonMap);
-        LoadCompressedSpriteSheet(&sSpriteSheet_GreyMenuButtonDex);
-        LoadCompressedSpriteSheet(&sSpriteSheet_GreyMenuButtonParty);
+        LoadSpriteSheet(&sSpriteSheet_GreyMenuButtonMap);
+        LoadSpriteSheet(&sSpriteSheet_GreyMenuButtonDex);
+        LoadSpriteSheet(&sSpriteSheet_GreyMenuButtonParty);
         LoadSpritePalette(&sSpritePal_GreyMenuButton);
         sStartMenuDataPtr->gfxLoadState++;
         break;

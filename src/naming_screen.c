@@ -1420,7 +1420,9 @@ static void NamingScreen_NoIcon(void)
  *                OUTFIT_UNUSUAL_RED,
  *                CB2_NewGameBirchSpeech_ReturnFromNamingScreen);
  */
-static void NamingScreen_CreatePlayerIcon(void)
+
+//Outfits
+/*static void NamingScreen_CreatePlayerIcon(void)
 {
     u16 gfxId = GetPlayerAvatarGraphicsIdByOutfitStateIdAndGender(DEFAULT_OUTFIT, PLAYER_AVATAR_STATE_NORMAL, gSaveBlock2Ptr->playerGender);
     u8 spriteId;
@@ -1428,6 +1430,17 @@ static void NamingScreen_CreatePlayerIcon(void)
 
     // gfxId = GetPlayerAvatarGraphicsIdByOutfitStateIdAndGender(outfit, PLAYER_AVATAR_STATE_NORMAL, gSaveBlock2Ptr->playerGender);
     spriteId = CreateObjectGraphicsSprite(gfxId, SpriteCallbackDummy, 56, 37, 0);
+    gSprites[spriteId].oam.priority = 3;
+    StartSpriteAnim(&gSprites[spriteId], ANIM_STD_GO_SOUTH);
+}*/
+
+static void NamingScreen_CreatePlayerIcon(void)
+{
+    u16 rivalGfxId;
+    u8 spriteId;
+
+    rivalGfxId = GetRivalAvatarGraphicsIdByStateIdAndGender(PLAYER_AVATAR_STATE_NORMAL, sNamingScreen->monSpecies);
+    spriteId = CreateObjectGraphicsSprite(rivalGfxId, SpriteCallbackDummy, 56, 37, 0);
     gSprites[spriteId].oam.priority = 3;
     StartSpriteAnim(&gSprites[spriteId], ANIM_STD_GO_SOUTH);
 }

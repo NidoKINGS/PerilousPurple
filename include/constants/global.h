@@ -11,6 +11,7 @@
 #include "config/dexnav.h"
 #include "config/summary_screen.h"
 #include "config/ai.h"
+#include "config/follower_npc.h"
 
 // Invalid Versions show as "----------" in Gen 4 and Gen 5's summary screen.
 // In Gens 6 and 7, invalid versions instead show "a distant land" in the summary screen.
@@ -180,11 +181,6 @@
 #define CONNECTION_EMERGE   6
 #define CONNECTION_CLIFF    7
 #define CONNECTION_LAND     8
-
-#define SEASON_SPRING 0
-#define SEASON_SUMMER 1
-#define SEASON_AUTUMN 2
-#define SEASON_WINTER 3
 
 #if TESTING
 #include "config/test.h"

@@ -1,4 +1,4 @@
-#include "global.h"
+/*#include "global.h"
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
@@ -415,7 +415,7 @@ static const struct SpriteSheet sDefaultCursor_SpriteSheet = {
     .tag = GFXTAG_CURSOR,
 };
 
-static const struct CompressedSpritePalette sDefaultCursor_SpritePalette = {
+static const struct SpritePalette sDefaultCursor_SpritePalette = {
     .data = sNewShopMenu_DefaultMenuPal,
     .tag = PALTAG_CURSOR,
 };
@@ -1023,8 +1023,8 @@ static void BuyMenuDecompressBgGraphics(void)
         DecompressAndCopyTileDataToVram(2, sNewShopMenu_DefaultScrollGfx, 0, 0, 0);
         LZDecompressWram(sNewShopMenu_DefaultMenuTilemap, sShopData->tilemapBuffers[0]);
         LZDecompressWram(sNewShopMenu_DefaultScrollTilemap, sShopData->tilemapBuffers[1]);
-        LoadCompressedPalette(sNewShopMenu_DefaultMenuPal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
-        LoadCompressedPalette(sNewShopMenu_DefaultMenuPal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
+        LoadPalette(sNewShopMenu_DefaultMenuPal, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+        LoadPalette(sNewShopMenu_DefaultMenuPal, BG_PLTT_ID(1), PLTT_SIZE_4BPP);
         return;
     }
     DecompressAndCopyTileDataToVram(2, Shop_GetSellerGraphics(SELLER_GFX_MENU_GFX), 0, sSellers[i].menuTileOffset != 0 ? sSellers[i].menuTileOffset : DEFAULT_MENU_TILE_OFFSET, 0);
@@ -1051,7 +1051,7 @@ static inline const u8 *BuyMenuGetItemName(u32 id)
         case MART_TYPE_DECOR ... MART_TYPE_DECOR2:
             return gDecorations[sMartInfo.itemList[id]].name;
         default:
-            return ItemId_GetName(sMartInfo.itemList[id]);
+            return GetItemName(sMartInfo.itemList[id]);
         // custom
     #ifdef MUDSKIP_OUTFIT_SYSTEM
         case MART_TYPE_OUTFIT:
@@ -1067,7 +1067,7 @@ static inline const u8 *BuyMenuGetItemDesc(u32 id)
         case MART_TYPE_DECOR ... MART_TYPE_DECOR2:
             return gDecorations[sMartInfo.itemList[id]].description;
         default:
-            return ItemId_GetDescription(sMartInfo.itemList[id]);
+            return GetItemDescription(sMartInfo.itemList[id]);
         // custom
     #ifdef MUDSKIP_OUTFIT_SYSTEM
         case MART_TYPE_OUTFIT:
@@ -1787,3 +1787,4 @@ void NewShop_CreateVariablePokemartMenu(const u16 *itemsForSale)
 }
 
 #endif // MUDSKIP_SHOP_UI
+*/

@@ -1,4 +1,4 @@
-#include "global.h"
+/*#include "global.h"
 #include "main.h"
 #include "bg.h"
 #include "malloc.h"
@@ -291,7 +291,7 @@ static const struct SpriteTemplate sIndicatorSpriteTemplate = {
     .oam = &sIndicatorSpriteOamData,
 };
 
-static const struct CompressedSpritePalette sCursor_SpritePalette = {
+static const struct SpritePalette sCursor_SpritePalette = {
     .data = sCursorSprite_Pal,
     .tag = PALTAG_CURSOR,
 };
@@ -339,7 +339,7 @@ _________________
 |       | # # # |
 _________________
 */
-static const u8 sGridPosX[] = { (104 + 16), (152 + 16), (200 + 16) };
+/*static const u8 sGridPosX[] = { (104 + 16), (152 + 16), (200 + 16) };
 static const u8 sGridPosY[] = { (24 + 16),   (72 + 16), (120 + 16) };
 
 void Task_OpenOutfitMenu(u8 taskId)
@@ -1028,3 +1028,4 @@ u32 GetOutfitPrice(u16 id)
 {
     return gOutfits[id].prices[gSaveBlock2Ptr->playerGender];
 }
+*/

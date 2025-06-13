@@ -37,16 +37,16 @@ typedef void (*TilesetCB)(void);
 
 struct Tileset
 {
-    /*0x00*/ bool8 isCompressed;
+    /*0x00*/ u8 isCompressed:1;
+    /*0x00*/ u8 swapPalettes:7; // Bitmask determining whether palette has an alternate, night-time palette
     /*0x01*/ bool8 isSecondary;
+    /*0x02*/ u8 lightPalettes; // Bitmask determining whether a palette should be time-blended as a light
+    /*0x03*/ u8 customLightColor; // Bitmask determining which light palettes have custom light colors (color 15)
     /*0x04*/ const u32 *tiles;
-    /*0x08*/ const u16 (*palettes)[16]; //Spring Palette
+    /*0x08*/ const u16 (*palettes)[16];
     /*0x0C*/ const u16 *metatiles;
     /*0x10*/ const u16 *metatileAttributes;
     /*0x14*/ TilesetCB callback;
-    /*0x08*/ const u16 (*palettes_summer)[16];
-    /*0x08*/ const u16 (*palettes_autumn)[16];
-    /*0x08*/ const u16 (*palettes_winter)[16];
 };
 
 struct MapLayout
@@ -191,14 +191,15 @@ struct ObjectEvent
              u32 inShallowFlowingWater:1;
              u32 inSandPile:1;
              u32 inHotSprings:1;
-             u32 hasShadow:1;
+             u32 noShadow:1;
              u32 spriteAnimPausedBackup:1;
     /*0x03*/ u32 spriteAffineAnimPausedBackup:1;
              u32 disableJumpLandingGroundEffect:1;
              u32 fixedPriority:1;
              u32 hideReflection:1;
              u32 shiny:1; // OW mon shininess
-             u32 padding:3;
+             u32 jumpDone:1;
+             u32 padding:2;
     /*0x04*/ u16 graphicsId; // 12 bits for species; high 4 bits for form
     /*0x06*/ u8 movementType;
     /*0x07*/ u8 trainerType;
@@ -212,8 +213,11 @@ struct ObjectEvent
     /*0x14*/ struct Coords16 previousCoords;
     /*0x18*/ u16 facingDirection:4; // current direction?
              u16 movementDirection:4;
-             u16 rangeX:4;
-             u16 rangeY:4;
+             struct __attribute__((packed))
+             {
+                u16 rangeX:4;
+                u16 rangeY:4;
+             } range;
     /*0x1A*/ u8 fieldEffectSpriteId;
     /*0x1B*/ u8 warpArrowSpriteId;
     /*0x1C*/ u8 movementActionId;
@@ -250,32 +254,26 @@ struct ObjectEventGraphicsInfo
 
 enum {
     PLAYER_AVATAR_STATE_NORMAL,
-    PLAYER_AVATAR_STATE_BIKE,
+    PLAYER_AVATAR_STATE_MACH_BIKE,
+    PLAYER_AVATAR_STATE_ACRO_BIKE,
     PLAYER_AVATAR_STATE_SURFING,
     PLAYER_AVATAR_STATE_UNDERWATER,
-    PLAYER_AVATAR_STATE_COUNT = 4,
-    PLAYER_AVATAR_STATE_CONTROLLABLE,
-    PLAYER_AVATAR_STATE_FORCED,
-    PLAYER_AVATAR_STATE_DASH,
+    PLAYER_AVATAR_STATE_FIELD_MOVE,
+    PLAYER_AVATAR_STATE_FISHING,
+    PLAYER_AVATAR_STATE_WATERING,
+    PLAYER_AVATAR_STATE_VSSEEKER,
 };
 
-#define PLAYER_AVATAR_FLAG_ON_FOOT      (1 << PLAYER_AVATAR_STATE_NORMAL)
-#define PLAYER_AVATAR_FLAG_BIKE         (1 << PLAYER_AVATAR_STATE_BIKE)
-#define PLAYER_AVATAR_FLAG_SURFING      (1 << PLAYER_AVATAR_STATE_SURFING)
-#define PLAYER_AVATAR_FLAG_UNDERWATER   (1 << PLAYER_AVATAR_STATE_UNDERWATER)
-#define PLAYER_AVATAR_FLAG_CONTROLLABLE (1 << PLAYER_AVATAR_STATE_CONTROLLABLE)
-#define PLAYER_AVATAR_FLAG_FORCED_MOVE  (1 << PLAYER_AVATAR_STATE_FORCED)
-#define PLAYER_AVATAR_FLAG_DASH         (1 << PLAYER_AVATAR_STATE_DASH)
+#define PLAYER_AVATAR_FLAG_ON_FOOT      (1 << 0)
+#define PLAYER_AVATAR_FLAG_MACH_BIKE    (1 << 1)
+#define PLAYER_AVATAR_FLAG_ACRO_BIKE    (1 << 2)
+#define PLAYER_AVATAR_FLAG_SURFING      (1 << 3)
+#define PLAYER_AVATAR_FLAG_UNDERWATER   (1 << 4)
+#define PLAYER_AVATAR_FLAG_CONTROLLABLE (1 << 5)
+#define PLAYER_AVATAR_FLAG_FORCED_MOVE  (1 << 6)
+#define PLAYER_AVATAR_FLAG_DASH         (1 << 7)
 
-enum {
-    PLAYER_AVATAR_GFX_FIELD_MOVE,
-    PLAYER_AVATAR_GFX_FISHING,
-    PLAYER_AVATAR_GFX_WATERING,
-    PLAYER_AVATAR_GFX_DECORATING,
-    PLAYER_AVATAR_GFX_VSSEEKER,
-    PLAYER_AVATAR_GFX_COUNT,
-};
-
+#define PLAYER_AVATAR_FLAG_BIKE        (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE)
 // Player avatar flags for which follower Pokémon are hidden
 #define FOLLOWER_INVISIBLE_FLAGS       (PLAYER_AVATAR_FLAG_SURFING | PLAYER_AVATAR_FLAG_UNDERWATER | \
                                         PLAYER_AVATAR_FLAG_BIKE | PLAYER_AVATAR_FLAG_FORCED_MOVE)
