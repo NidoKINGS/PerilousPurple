@@ -96,6 +96,57 @@ const struct WildPokemon gRoute101_Morning_HeadbuttMons[] =
 };
 const struct WildPokemonInfo gRoute101_Morning_HeadbuttMonsInfo = { 20, gRoute101_Morning_HeadbuttMons };
 
+const struct WildPokemon gRoute101_Day_LandMons[] =
+{
+    { 5, 5, SPECIES_BUNEARY_CORDISIAN },
+    { 5, 5, SPECIES_BUNEARY_CORDISIAN },
+    { 5, 5, SPECIES_BUNEARY_CORDISIAN },
+    { 5, 5, SPECIES_BUNEARY_CORDISIAN },
+    { 5, 5, SPECIES_BUNEARY_CORDISIAN },
+    { 5, 5, SPECIES_BUNEARY_CORDISIAN },
+    { 5, 5, SPECIES_BUNEARY_CORDISIAN },
+    { 5, 5, SPECIES_BUNEARY_CORDISIAN },
+    { 5, 5, SPECIES_BUNEARY_CORDISIAN },
+    { 5, 5, SPECIES_BUNEARY_CORDISIAN },
+    { 5, 5, SPECIES_BUNEARY_CORDISIAN },
+    { 5, 5, SPECIES_BUNEARY_CORDISIAN },
+};
+const struct WildPokemonInfo gRoute101_Day_LandMonsInfo = { 10, gRoute101_Day_LandMons };
+
+const struct WildPokemon gRoute101_Evening_LandMons[] =
+{
+    { 5, 5, SPECIES_SPIRITOMB },
+    { 5, 5, SPECIES_SPIRITOMB },
+    { 5, 5, SPECIES_SPIRITOMB },
+    { 5, 5, SPECIES_SPIRITOMB },
+    { 5, 5, SPECIES_SPIRITOMB },
+    { 5, 5, SPECIES_SPIRITOMB },
+    { 5, 5, SPECIES_SPIRITOMB },
+    { 5, 5, SPECIES_SPIRITOMB },
+    { 5, 5, SPECIES_SPIRITOMB },
+    { 5, 5, SPECIES_SPIRITOMB },
+    { 5, 5, SPECIES_SPIRITOMB },
+    { 5, 5, SPECIES_SPIRITOMB },
+};
+const struct WildPokemonInfo gRoute101_Evening_LandMonsInfo = { 10, gRoute101_Evening_LandMons };
+
+const struct WildPokemon gRoute101_Night_LandMons[] =
+{
+    { 5, 5, SPECIES_DUSKULL },
+    { 5, 5, SPECIES_DUSKULL },
+    { 5, 5, SPECIES_DUSKULL },
+    { 5, 5, SPECIES_DUSKULL },
+    { 5, 5, SPECIES_DUSKULL },
+    { 5, 5, SPECIES_DUSKULL },
+    { 5, 5, SPECIES_DUSKULL },
+    { 5, 5, SPECIES_DUSKULL },
+    { 5, 5, SPECIES_DUSKULL },
+    { 5, 5, SPECIES_DUSKULL },
+    { 5, 5, SPECIES_DUSKULL },
+    { 5, 5, SPECIES_DUSKULL },
+};
+const struct WildPokemonInfo gRoute101_Night_LandMonsInfo = { 10, gRoute101_Night_LandMons };
+
 const struct WildPokemon gRoute102_Morning_LandMons[] =
 {
     { 3, 3, SPECIES_POOCHYENA },
@@ -3305,7 +3356,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
             },
             [TIME_DAY] = 
             {
-                .landMonsInfo = NULL,
+                .landMonsInfo = &gRoute101_Day_LandMonsInfo,
                 .waterMonsInfo = NULL,
                 .rockSmashMonsInfo = NULL,
                 .fishingMonsInfo = NULL,
@@ -3314,7 +3365,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
             },
             [TIME_EVENING] = 
             {
-                .landMonsInfo = NULL,
+                .landMonsInfo = &gRoute101_Evening_LandMonsInfo,
                 .waterMonsInfo = NULL,
                 .rockSmashMonsInfo = NULL,
                 .fishingMonsInfo = NULL,
@@ -3323,7 +3374,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
             },
             [TIME_NIGHT] = 
             {
-                .landMonsInfo = NULL,
+                .landMonsInfo = &gRoute101_Night_LandMonsInfo,
                 .waterMonsInfo = NULL,
                 .rockSmashMonsInfo = NULL,
                 .fishingMonsInfo = NULL,
@@ -8621,49 +8672,6 @@ const struct WildPokemonHeader gWildMonHeaders[] =
             },
         },
     },
-    {
-        .mapGroup = MAP_GROUP(MAP_UNDEFINED),
-        .mapNum = MAP_NUM(MAP_UNDEFINED),
-        .encounterTypes =
-        {
-            [TIME_MORNING] = 
-            {
-                .landMonsInfo = NULL,
-                .waterMonsInfo = NULL,
-                .rockSmashMonsInfo = NULL,
-                .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
-                .hiddenMonsInfo = NULL,
-            },
-            [TIME_DAY] = 
-            {
-                .landMonsInfo = NULL,
-                .waterMonsInfo = NULL,
-                .rockSmashMonsInfo = NULL,
-                .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
-                .hiddenMonsInfo = NULL,
-            },
-            [TIME_EVENING] = 
-            {
-                .landMonsInfo = NULL,
-                .waterMonsInfo = NULL,
-                .rockSmashMonsInfo = NULL,
-                .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
-                .hiddenMonsInfo = NULL,
-            },
-            [TIME_NIGHT] = 
-            {
-                .landMonsInfo = NULL,
-                .waterMonsInfo = NULL,
-                .rockSmashMonsInfo = NULL,
-                .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
-                .hiddenMonsInfo = NULL,
-            },
-        },
-    },
 };
 
 
@@ -8970,49 +8978,6 @@ const struct WildPokemonHeader gBattlePyramidWildMonHeaders[] =
             },
         },
     },
-    {
-        .mapGroup = MAP_GROUP(MAP_UNDEFINED),
-        .mapNum = MAP_NUM(MAP_UNDEFINED),
-        .encounterTypes =
-        {
-            [TIME_MORNING] = 
-            {
-                .landMonsInfo = NULL,
-                .waterMonsInfo = NULL,
-                .rockSmashMonsInfo = NULL,
-                .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
-                .hiddenMonsInfo = NULL,
-            },
-            [TIME_DAY] = 
-            {
-                .landMonsInfo = NULL,
-                .waterMonsInfo = NULL,
-                .rockSmashMonsInfo = NULL,
-                .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
-                .hiddenMonsInfo = NULL,
-            },
-            [TIME_EVENING] = 
-            {
-                .landMonsInfo = NULL,
-                .waterMonsInfo = NULL,
-                .rockSmashMonsInfo = NULL,
-                .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
-                .hiddenMonsInfo = NULL,
-            },
-            [TIME_NIGHT] = 
-            {
-                .landMonsInfo = NULL,
-                .waterMonsInfo = NULL,
-                .rockSmashMonsInfo = NULL,
-                .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
-                .hiddenMonsInfo = NULL,
-            },
-        },
-    },
 };
 
 
@@ -9155,49 +9120,6 @@ const struct WildPokemonHeader gBattlePikeWildMonHeaders[] =
             [TIME_MORNING] = 
             {
                 .landMonsInfo = &gBattlePike_4_Morning_LandMonsInfo,
-                .waterMonsInfo = NULL,
-                .rockSmashMonsInfo = NULL,
-                .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
-                .hiddenMonsInfo = NULL,
-            },
-            [TIME_DAY] = 
-            {
-                .landMonsInfo = NULL,
-                .waterMonsInfo = NULL,
-                .rockSmashMonsInfo = NULL,
-                .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
-                .hiddenMonsInfo = NULL,
-            },
-            [TIME_EVENING] = 
-            {
-                .landMonsInfo = NULL,
-                .waterMonsInfo = NULL,
-                .rockSmashMonsInfo = NULL,
-                .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
-                .hiddenMonsInfo = NULL,
-            },
-            [TIME_NIGHT] = 
-            {
-                .landMonsInfo = NULL,
-                .waterMonsInfo = NULL,
-                .rockSmashMonsInfo = NULL,
-                .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
-                .hiddenMonsInfo = NULL,
-            },
-        },
-    },
-    {
-        .mapGroup = MAP_GROUP(MAP_UNDEFINED),
-        .mapNum = MAP_NUM(MAP_UNDEFINED),
-        .encounterTypes =
-        {
-            [TIME_MORNING] = 
-            {
-                .landMonsInfo = NULL,
                 .waterMonsInfo = NULL,
                 .rockSmashMonsInfo = NULL,
                 .fishingMonsInfo = NULL,
