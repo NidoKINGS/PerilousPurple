@@ -910,12 +910,12 @@ static void DestroyStatusSprites()
 void Task_OpenStartMenuFullScreen(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    if (!gPaletteFade.active)
-    {
+    //if (!gPaletteFade.active)
+    //{
         CleanupOverworldWindowsAndTilemaps();
         StartMenuFull_Init(CB2_ReturnToField);
         DestroyTask(taskId);
-    }
+    //}
 }
 
 // This is our main initialization function if you want to call the menu from elsewhere

@@ -1,3 +1,4 @@
+/*
 //Credits: TheXaman
 #include "global.h"
 #include "constants/songs.h"
@@ -727,3 +728,4 @@ static void TxRegItemsMenu_FreeStructs(void)
 {
     Free(gTxRegItemsMenu);
 }
+*/
