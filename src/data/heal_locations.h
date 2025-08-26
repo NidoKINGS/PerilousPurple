@@ -136,6 +136,30 @@ static const struct HealLocation sHealLocations[NUM_HEAL_LOCATIONS - 1] = {
         .x = 3,
         .y = 52,
     },
+    [HEAL_LOCATION_ROUTE101 - 1] = {
+        .mapGroup = MAP_GROUP(MAP_ROUTE101),
+        .mapNum = MAP_NUM(MAP_ROUTE101),
+        .x = 10,
+        .y = 10,
+    },
+    [HEAL_LOCATION_PETALBURG_CITY_2 - 1] = {
+        .mapGroup = MAP_GROUP(MAP_PETALBURG_CITY),
+        .mapNum = MAP_NUM(MAP_PETALBURG_CITY),
+        .x = 15,
+        .y = 15,
+    },
+    [HEAL_LOCATION_ROUTE_01 - 1] = {
+        .mapGroup = MAP_GROUP(MAP_ROUTE_01),
+        .mapNum = MAP_NUM(MAP_ROUTE_01),
+        .x = 22,
+        .y = 15,
+    },
+    [HEAL_LOCATION_RUSTBORO_CITY_2 - 1] = {
+        .mapGroup = MAP_GROUP(MAP_RUSTBORO_CITY),
+        .mapNum = MAP_NUM(MAP_RUSTBORO_CITY),
+        .x = 20,
+        .y = 30,
+    },
 };
 
 static const u16 sWhiteoutRespawnHealCenterMapIdxs[][2] = {

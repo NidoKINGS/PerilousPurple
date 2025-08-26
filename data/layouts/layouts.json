@@ -4420,6 +4420,66 @@
       "secondary_tileset": "gTileset_Sootopolis",
       "border_filepath": "data/layouts/SootopolisCliff/border.bin",
       "blockdata_filepath": "data/layouts/SootopolisCliff/map.bin"
+    },
+    {
+      "id": "LAYOUT_HEMLOCK_VILLAGE",
+      "name": "HemlockVillage_Layout",
+      "width": 36,
+      "height": 34,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/HemlockVillage/border.bin",
+      "blockdata_filepath": "data/layouts/HemlockVillage/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_01",
+      "name": "Route_01_Layout",
+      "width": 50,
+      "height": 34,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Petalburg",
+      "border_filepath": "data/layouts/Route_01/border.bin",
+      "blockdata_filepath": "data/layouts/Route_01/map.bin"
+    },
+    {
+      "id": "LAYOUT_ALDER_TOWN",
+      "name": "AlderTown_Layout",
+      "width": 54,
+      "height": 80,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/AlderTown/border.bin",
+      "blockdata_filepath": "data/layouts/AlderTown/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_02",
+      "name": "Route_02_Layout",
+      "width": 80,
+      "height": 54,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/Route_02/border.bin",
+      "blockdata_filepath": "data/layouts/Route_02/map.bin"
+    },
+    {
+      "id": "LAYOUT_KEYSTONE_CITY",
+      "name": "KeystoneCity_Layout",
+      "width": 30,
+      "height": 40,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/KeystoneCity/border.bin",
+      "blockdata_filepath": "data/layouts/KeystoneCity/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE_03",
+      "name": "Route_03_Layout",
+      "width": 30,
+      "height": 57,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Rustboro",
+      "border_filepath": "data/layouts/Route_03/border.bin",
+      "blockdata_filepath": "data/layouts/Route_03/map.bin"
     }
   ]
 }

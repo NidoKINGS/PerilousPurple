@@ -196,6 +196,12 @@ static const u8 sMapName_MARINE_CAVE[] = _("MARINE CAVE");
 static const u8 sMapName_TERRA_CAVE[] = _("TERRA CAVE");
 static const u8 sMapName_DESERT_UNDERPASS[] = _("DESERT UNDERPASS");
 static const u8 sMapName_TRAINER_HILL[] = _("TRAINER HILL");
+static const u8 sMapName_Hemlock_Village[] = _("Hemlock Village");
+static const u8 sMapName_Alder_Town[] = _("Alder Town");
+static const u8 sMapName_Keystone_City[] = _("Keystone City");
+static const u8 sMapName_Route_01[] = _("Route 01");
+static const u8 sMapName_Route_02[] = _("Route 02");
+static const u8 sMapName_Route_03[] = _("Route 03");
 
 const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_LITTLEROOT_TOWN] = { 4, 11, 1, 1, sMapName_LITTLEROOT_TOWN},
@@ -410,6 +416,12 @@ const struct RegionMapLocation gRegionMapEntries[] = {
     [MAPSEC_ALTERING_CAVE] = { 6, 8, 1, 1, sMapName_ALTERING_CAVE},
     [MAPSEC_NAVEL_ROCK] = { 0, 0, 1, 1, sMapName_NAVEL_ROCK},
     [MAPSEC_TRAINER_HILL] = { 8, 4, 1, 1, sMapName_TRAINER_HILL},
+    [MAPSEC_HEMLOCK_VILLAGE] = { 0, 0, 1, 1, sMapName_Hemlock_Village},
+    [MAPSEC_ALDER_TOWN] = { 0, 0, 1, 1, sMapName_Alder_Town},
+    [MAPSEC_KEYSTONE_CITY] = { 0, 0, 1, 1, sMapName_Keystone_City},
+    [MAPSEC_ROUTE_01] = { 0, 0, 1, 1, sMapName_Route_01},
+    [MAPSEC_ROUTE_02] = { 0, 0, 1, 1, sMapName_Route_02},
+    [MAPSEC_ROUTE_03] = { 0, 0, 1, 1, sMapName_Route_03},
 };
 
 #endif // GUARD_DATA_REGION_MAP_REGION_MAP_ENTRIES_H

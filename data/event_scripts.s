@@ -1162,3 +1162,13 @@ EventScript_VsSeekerChargingDone::
 
 	.include "data/maps/SootopolisCliff/scripts.inc"
 	.include "data/scripts/dexnav.inc"
+
+	.include "data/maps/HemlockVillage/scripts.inc"
+	.include "data/maps/Route_01/scripts.inc"
+	.include "data/maps/AlderTown/scripts.inc"
+
+	.include "data/maps/Route_02/scripts.inc"
+
+	.include "data/maps/KeystoneCity/scripts.inc"
+
+	.include "data/maps/Route_03/scripts.inc"
