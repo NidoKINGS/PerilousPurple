@@ -462,12 +462,21 @@ static void Task_WaitForFadeShowStartMenu(u8 taskId)
     if (WaitForWeatherFadeIn() == TRUE)
     {
         DestroyTask(taskId);
-        if (GetSafariZoneFlag() || InBattlePyramid() || InBattlePike() || InUnionRoom() || InMultiPartnerRoom())
+        if (GetSafariZoneFlag() || InBattlePyramid_() || InBattlePike() || InUnionRoom() || InMultiPartnerRoom())
             CreateTask(Task_ShowStartMenu, 80);
         else        
             CreateTask(Task_OpenStartMenuFullScreen, 80);
     }
 }
+
+/*static void Task_WaitForFadeShowStartMenu(u8 taskId)
+{
+    if (WaitForWeatherFadeIn() == TRUE)
+    {
+        DestroyTask(taskId);
+        CreateTask(Task_OpenStartMenuFullScreen, 80);
+    }
+}*/
 
 void ReturnToFieldOpenStartMenu(void)
 {
