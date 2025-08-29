@@ -4464,7 +4464,7 @@
     {
       "id": "LAYOUT_KEYSTONE_CITY",
       "name": "KeystoneCity_Layout",
-      "width": 30,
+      "width": 44,
       "height": 40,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Rustboro",
@@ -4474,7 +4474,7 @@
     {
       "id": "LAYOUT_ROUTE_03",
       "name": "Route_03_Layout",
-      "width": 30,
+      "width": 44,
       "height": 57,
       "primary_tileset": "gTileset_General",
       "secondary_tileset": "gTileset_Rustboro",
