@@ -475,6 +475,7 @@ static const struct WindowTemplate sCancelButtonWindowTemplate =
     .paletteNum = 3,
     .baseBlock = 0x207,
 };
+
 static const struct WindowTemplate sCancelButtonWindowTemplate_equal =
 {
     .bg = 0,
@@ -517,6 +518,7 @@ static const struct WindowTemplate sConfirmButtonWindowTemplate =
     .paletteNum = 3,
     .baseBlock = 0x1D3,
 };
+
 static const struct WindowTemplate sConfirmButtonWindowTemplate_equal =
 {
     .bg = 0,
@@ -727,15 +729,15 @@ static const u8 sEqualMainSlotTileNums_Egg[] =  {43, 44, 44, 44, 44, 44, 44, 44,
                                                  49, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 33, 50,
                                                  55, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 56, 57};
 
-static const u8 sEqualEmptySlotTileNums[] = {21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23,
-                                             30,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 31,
-                                             30,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 31,
-                                             30,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 31,
-                                             37, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 39};
+static const u8 sEqualEmptySlotTileNums[] =     {21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23,
+                                                 30,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 31,
+                                                 30,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 31,
+                                                 30,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 31,
+                                                 37, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 39};
 
-static const u8 sEmptySlotTileNums[] = {21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23,
-                                        30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31,
-                                        37, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 39};
+static const u8 sEmptySlotTileNums[] =          {21, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 22, 23,
+                                                 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 31,
+                                                 37, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 38, 39};
 
 //
 // Palette offsets
@@ -920,40 +922,6 @@ static const u8 sPartyMenuActionCounts[] =
     [ACTIONS_TAKEITEM_TOSS] = ARRAY_COUNT(sPartyMenuAction_TakeItemTossCancel),
     [ACTIONS_ROTOM_CATALOG] = ARRAY_COUNT(sPartyMenuAction_RotomCatalog),
     [ACTIONS_ZYGARDE_CUBE]  = ARRAY_COUNT(sPartyMenuAction_ZygardeCube),
-};
-
-static const u16 sFieldMoves[FIELD_MOVES_COUNT] =
-{
-    [FIELD_MOVE_FLY]          = MOVE_FLY,
-    [FIELD_MOVE_TELEPORT]     = MOVE_TELEPORT,
-    [FIELD_MOVE_DIG]          = MOVE_DIG,
-    [FIELD_MOVE_SECRET_POWER] = MOVE_SECRET_POWER,
-    [FIELD_MOVE_MILK_DRINK]   = MOVE_MILK_DRINK,
-    [FIELD_MOVE_SOFT_BOILED]  = MOVE_SOFT_BOILED,
-    [FIELD_MOVE_SWEET_SCENT]  = MOVE_SWEET_SCENT,
-#if OW_DEFOG_FIELD_MOVE == TRUE
-    [FIELD_MOVE_DEFOG]        = MOVE_DEFOG,
-#endif
-    [FIELD_MOVE_HEADBUTT]     = MOVE_HEADBUTT,
-};
-
-struct
-{
-    bool8 (*fieldMoveFunc)(void);
-    u8 msgId;
-} static const sFieldMoveCursorCallbacks[FIELD_MOVES_COUNT] =
-{
-    [FIELD_MOVE_FLY]          = {SetUpFieldMove_Fly,         PARTY_MSG_CANT_USE_HERE},
-    [FIELD_MOVE_TELEPORT]     = {SetUpFieldMove_Teleport,    PARTY_MSG_CANT_USE_HERE},
-    [FIELD_MOVE_DIG]          = {SetUpFieldMove_Dig,         PARTY_MSG_CANT_USE_HERE},
-    [FIELD_MOVE_SECRET_POWER] = {SetUpFieldMove_SecretPower, PARTY_MSG_CANT_USE_HERE},
-    [FIELD_MOVE_MILK_DRINK]   = {SetUpFieldMove_SoftBoiled,  PARTY_MSG_NOT_ENOUGH_HP},
-    [FIELD_MOVE_SOFT_BOILED]  = {SetUpFieldMove_SoftBoiled,  PARTY_MSG_NOT_ENOUGH_HP},
-    [FIELD_MOVE_SWEET_SCENT]  = {SetUpFieldMove_SweetScent,  PARTY_MSG_CANT_USE_HERE},
-    [FIELD_MOVE_HEADBUTT]     = {SetUpFieldMove_Headbutt,    PARTY_MSG_CANT_USE_HERE},
-#if OW_DEFOG_FIELD_MOVE == TRUE
-    [FIELD_MOVE_DEFOG]        = {SetUpFieldMove_Defog,       PARTY_MSG_CANT_USE_HERE},
-#endif
 };
 
 static const u8 *const sUnionRoomTradeMessages[] =

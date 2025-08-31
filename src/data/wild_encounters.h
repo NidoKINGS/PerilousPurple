@@ -113,6 +113,23 @@ const struct WildPokemon gRoute101_Day_LandMons[] =
 };
 const struct WildPokemonInfo gRoute101_Day_LandMonsInfo = { 10, gRoute101_Day_LandMons };
 
+const struct WildPokemon gRoute101_Day_HeadbuttMons[] =
+{
+    { 5, 5, SPECIES_COMBEE },
+    { 5, 5, SPECIES_COMBEE },
+    { 5, 5, SPECIES_COMBEE },
+    { 5, 5, SPECIES_COMBEE },
+    { 5, 5, SPECIES_COMBEE },
+    { 5, 5, SPECIES_COMBEE },
+    { 5, 5, SPECIES_COMBEE },
+    { 5, 5, SPECIES_COMBEE },
+    { 5, 5, SPECIES_COMBEE },
+    { 5, 5, SPECIES_COMBEE },
+    { 5, 5, SPECIES_COMBEE },
+    { 5, 5, SPECIES_COMBEE },
+};
+const struct WildPokemonInfo gRoute101_Day_HeadbuttMonsInfo = { 20, gRoute101_Day_HeadbuttMons };
+
 const struct WildPokemon gRoute101_Evening_LandMons[] =
 {
     { 5, 5, SPECIES_SPIRITOMB },
@@ -3360,7 +3377,7 @@ const struct WildPokemonHeader gWildMonHeaders[] =
                 .waterMonsInfo = NULL,
                 .rockSmashMonsInfo = NULL,
                 .fishingMonsInfo = NULL,
-                .headbuttMonsInfo = NULL,
+                .headbuttMonsInfo = &gRoute101_Day_HeadbuttMonsInfo,
                 .hiddenMonsInfo = NULL,
             },
             [TIME_EVENING] = 

@@ -547,7 +547,7 @@ static void AdjustSecretPowerSpritePixelOffsets(void)
     }
 }
 
-bool8 SetUpFieldMove_SecretPower(void)
+bool32 SetUpFieldMove_SecretPower(void)
 {
     u8 mb;
 
@@ -1348,7 +1348,7 @@ bool8 FldEff_UseHeadbutt(void)
 
 // Called when Headbutt is used from the party menu
 // For interacting with a headbuttable tree in the field, see EventScript_Headbutt
-bool8 SetUpFieldMove_Headbutt(void)
+bool32 SetUpFieldMove_Headbutt(void)
 {
     GetXYCoordsOneStepInFrontOfPlayer(&gPlayerFacingPosition.x, &gPlayerFacingPosition.y);
     if (MapGridGetMetatileBehaviorAt(gPlayerFacingPosition.x, gPlayerFacingPosition.y) == MB_HEADBUTT)

@@ -345,16 +345,13 @@ EventScript_UseDig::
 @ Interact with a tree a Pokémon can use headbutt on
 EventScript_Headbutt::
 	lockall
-	checkpartymove MOVE_HEADBUTT
-	compare VAR_RESULT, PARTY_SIZE
-	goto_if_eq EventScript_CantHeadbuttTree
+	checkfieldmove FIELD_MOVE_HEADBUTT
+	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantHeadbuttTree
+	bufferpartymonnick STR_VAR_1, VAR_RESULT
 	setfieldeffectargument 0, VAR_RESULT
-	bufferpartymonnick 0, VAR_RESULT
-	buffermovename 1, MOVE_HEADBUTT
 	msgbox Text_WantToHeadbutt, MSGBOX_YESNO
-	compare VAR_RESULT, NO
-	goto_if_eq EventScript_CancelHeadbutt
-	msgbox Text_MonUsedFieldMove, MSGBOX_DEFAULT
+	goto_if_eq VAR_RESULT, NO, EventScript_CancelHeadbutt
+	msgbox Text_MonUsedHeadbutt, MSGBOX_DEFAULT
 	closemessage
 	dofieldeffect FLDEFF_USE_HEADBUTT
 	waitstate
@@ -370,6 +367,9 @@ EventScript_CancelHeadbutt::
 	closemessage
 	releaseall
 	end
+
+Text_MonUsedHeadbutt:
+    .string "{STR_VAR_1} used Headbutt!$"
 
 @ Use headbutt from party menu
 EventScript_UseHeadbutt::
@@ -526,3 +526,36 @@ EventScript_UseDefog::
 	waitstate
 	releaseall
 	end
+
+EventScript_UseRockClimb::
+	lockall
+	checkfieldmove FIELD_MOVE_ROCK_CLIMB
+	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CantRockClimb
+	bufferpartymonnick STR_VAR_1, VAR_RESULT
+	setfieldeffectargument 0, VAR_RESULT
+	msgbox Text_WantToRockClimb, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, EventScript_EndRockClimb
+	msgbox Text_MonUsedRockClimb, MSGBOX_DEFAULT
+	closemessage
+	dofieldeffect FLDEFF_USE_ROCK_CLIMB
+	waitstate
+	goto EventScript_EndRockClimb
+	end
+
+EventScript_CantRockClimb::
+	msgbox Text_CantRockClimb, MSGBOX_DEFAULT
+
+EventScript_EndRockClimb::
+	releaseall
+	end
+
+Text_WantToRockClimb:
+    .string "The cliff is steep.\n"
+    .string "Would you like to use Rock Climb?$"
+
+Text_MonUsedRockClimb:
+    .string "{STR_VAR_1} used Rock Climb!$"
+
+Text_CantRockClimb:
+    .string "The cliff is steep.\n"
+    .string "A Pokémon may be able to climb it.$"

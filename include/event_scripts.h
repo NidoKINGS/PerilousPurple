@@ -576,6 +576,7 @@ extern const u8 EventScript_CannotUseWaterfall[];
 extern const u8 EventScript_DiveSpot[];
 extern const u8 EventScript_UseDive[];
 extern const u8 EventScript_UseDiveUnderwater[];
+extern const u8 EventScript_UseRockClimb[];
 extern const u8 EventScript_DiveUnderwater[];
 extern const u8 EventScript_CliffSpot[];
 extern const u8 EventScript_UseCliff[];
