@@ -22,11 +22,12 @@
   "object_events": [],
   "warp_events": [
     {
+      "warp_id": "WARP_ID_PLAYERS_HOUSE",
       "x": 3,
       "y": 27,
       "elevation": 0,
-      "dest_map": "MAP_OLDALE_TOWN",
-      "dest_warp_id": "4"
+      "dest_map": "MAP_HEMLOCK_VILLAGE_PLAYERS_HOUSE_1F",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [],

@@ -136,6 +136,12 @@ static const struct HealLocation sHealLocations[NUM_HEAL_LOCATIONS - 1] = {
         .x = 3,
         .y = 52,
     },
+    [HEAL_LOCATION_HEMLOCK_VILLAGE_PLAYERS_HOUSE_BEDROOM - 1] = {
+        .mapGroup = MAP_GROUP(MAP_HEMLOCK_VILLAGE_PLAYERS_HOUSE_BEDROOM),
+        .mapNum = MAP_NUM(MAP_HEMLOCK_VILLAGE_PLAYERS_HOUSE_BEDROOM),
+        .x = 1,
+        .y = 4,
+    },
 };
 
 #define DEFAULT_POKEMON_CENTER_X 7

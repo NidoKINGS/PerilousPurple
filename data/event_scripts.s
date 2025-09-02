@@ -1173,3 +1173,9 @@ EventScript_VsSeekerChargingDone::
 	.include "data/maps/KeystoneCity/scripts.inc"
 
 	.include "data/maps/Route_03/scripts.inc"
+
+	.include "data/maps/HemlockVillage_PlayersHouse_1F/scripts.inc"
+
+	.include "data/maps/HemlockVillage_PlayersHouse_Hallway/scripts.inc"
+
+	.include "data/maps/HemlockVillage_PlayersHouse_Bedroom/scripts.inc"

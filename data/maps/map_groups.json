@@ -34,7 +34,8 @@
     "gMapGroup_IndoorRoute123",
     "gMapGroup_IndoorRoute119",
     "gMapGroup_IndoorRoute124",
-    "gMapGroup_CordisTownsAndRoutes"
+    "gMapGroup_CordisTownsAndRoutes",
+    "gMapGroup_CordisIndoorHemlock"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -630,5 +631,10 @@
     "Route_02",
     "KeystoneCity",
     "Route_03"
+  ],
+  "gMapGroup_CordisIndoorHemlock": [
+    "HemlockVillage_PlayersHouse_1F",
+    "HemlockVillage_PlayersHouse_Hallway",
+    "HemlockVillage_PlayersHouse_Bedroom"
   ]
 }

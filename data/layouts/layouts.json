@@ -4480,6 +4480,36 @@
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/Route_03/border.bin",
       "blockdata_filepath": "data/layouts/Route_03/map.bin"
+    },
+    {
+      "id": "LAYOUT_HEMLOCK_VILLAGE_PLAYERS_HOUSE_1F",
+      "name": "HemlockVillage_PlayersHouse_1F_Layout",
+      "width": 12,
+      "height": 9,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/HemlockVillage_PlayersHouse_1F/border.bin",
+      "blockdata_filepath": "data/layouts/HemlockVillage_PlayersHouse_1F/map.bin"
+    },
+    {
+      "id": "LAYOUT_HEMLOCK_VILLAGE_PLAYERS_HOUSE_HALLWAY",
+      "name": "HemlockVillage_PlayersHouse_Hallway_Layout",
+      "width": 12,
+      "height": 4,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/HemlockVillage_PlayersHouse_Hallway/border.bin",
+      "blockdata_filepath": "data/layouts/HemlockVillage_PlayersHouse_Hallway/map.bin"
+    },
+    {
+      "id": "LAYOUT_HEMLOCK_VILLAGE_PLAYERS_HOUSE_BEDROOM",
+      "name": "HemlockVillage_PlayersHouse_Bedroom_Layout",
+      "width": 9,
+      "height": 8,
+      "primary_tileset": "gTileset_Building",
+      "secondary_tileset": "gTileset_BrendansMaysHouse",
+      "border_filepath": "data/layouts/HemlockVillage_PlayersHouse_Bedroom/border.bin",
+      "blockdata_filepath": "data/layouts/HemlockVillage_PlayersHouse_Bedroom/map.bin"
     }
   ]
 }

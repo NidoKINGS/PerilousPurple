@@ -1,0 +1,37 @@
+{
+  "id": "MAP_HEMLOCK_VILLAGE_PLAYERS_HOUSE_1F",
+  "name": "HemlockVillage_PlayersHouse_1F",
+  "layout": "LAYOUT_HEMLOCK_VILLAGE_PLAYERS_HOUSE_1F",
+  "music": "MUS_DUMMY",
+  "region_map_section": "MAPSEC_HEMLOCK_VILLAGE",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": false,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [],
+  "warp_events": [
+    {
+      "warp_id": "WARP_ID_1F_STAIRWELL",
+      "x": 10,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_HEMLOCK_VILLAGE_PLAYERS_HOUSE_HALLWAY",
+      "dest_warp_id": "3"
+    },
+    {
+      "warp_id": "WARP_ID_TO_HEMLOCK1",
+      "x": 4,
+      "y": 8,
+      "elevation": 0,
+      "dest_map": "MAP_HEMLOCK_VILLAGE",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": []
+}
