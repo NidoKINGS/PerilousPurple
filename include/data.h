@@ -6,6 +6,7 @@
 #include "constants/battle.h"
 #include "difficulty.h"
 #include "debug.h"
+#include "global.h"
 
 #define MAX_TRAINER_ITEMS 4
 
@@ -179,6 +180,7 @@ extern const union AnimCmd *const gAnims_MonPic[];
 extern const union AnimCmd *const gAnims_Trainer[];
 extern const struct TrainerSprite gTrainerSprites[];
 extern const struct TrainerBacksprite gTrainerBacksprites[];
+extern const u16 gTrainerPicToTrainerBackPic[];
 
 extern const struct Trainer gTrainers[DIFFICULTY_COUNT][TRAINERS_COUNT];
 extern const struct Trainer gBattlePartners[DIFFICULTY_COUNT][PARTNER_COUNT];
@@ -313,7 +315,7 @@ static inline const u64 GetTrainerAIFlagsFromId(u16 trainerId)
 
 //! outfits
 
-/*struct Outfit
+struct Outfit
 {
     u8 isHidden:1; //! Will not shows up in the menu if locked.
     u32 prices[GENDER_COUNT]; //! heh
@@ -325,9 +327,9 @@ static inline const u64 GetTrainerAIFlagsFromId(u16 trainerId)
     //! region map & frontier pass
     const void *iconsRM[GENDER_COUNT]; //! region map
     const void *iconsFP; //! frontier pass
-};*/
+};
 
-//extern const struct Outfit gOutfits[OUTFIT_COUNT];
+extern const struct Outfit gOutfits[OUTFIT_COUNT];
 
 #define GFX 0
 #define PAL 1

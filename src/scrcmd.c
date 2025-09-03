@@ -3425,7 +3425,7 @@ bool8 ScrCmd_subquestmenu(struct ScriptContext *ctx)
 }
 
 //Outfits
-/*bool8 ScrCmd_toggleoutfit(struct ScriptContext *ctx)
+bool8 ScrCmd_toggleoutfit(struct ScriptContext *ctx)
 {
     u16 outfitId = VarGet(ScriptReadHalfword(ctx));
     u8 type = ScriptReadByte(ctx);
@@ -3461,7 +3461,7 @@ bool8 ScrCmd_getoutfitstatus(struct ScriptContext *ctx)
     return TRUE;
 }
 
-bool8 ScrCmd_bufferoutfitstr(struct ScriptContext *ctx)
+/*bool8 ScrCmd_bufferoutfitstr(struct ScriptContext *ctx)
 {
     u8 strVarIdx = ScriptReadByte(ctx);
     u16 outfit = VarGet(ScriptReadHalfword(ctx));
@@ -3469,9 +3469,9 @@ bool8 ScrCmd_bufferoutfitstr(struct ScriptContext *ctx)
 
     BufferOutfitStrings(sScriptStringVars[strVarIdx], outfit, type);
     return TRUE;
-}*/
+}
 
-/*bool8 ScrCmd_pokemartoutfit(struct ScriptContext *ctx)
+bool8 ScrCmd_pokemartoutfit(struct ScriptContext *ctx)
 {
     const void *ptr = (void *)ScriptReadWord(ctx);
 
@@ -3480,3 +3480,15 @@ bool8 ScrCmd_bufferoutfitstr(struct ScriptContext *ctx)
     ScriptContext_Stop();
     return TRUE;
 }*/
+
+bool8 ScrCmd_bufferoutfitstr(struct ScriptContext *ctx)
+{
+    u8 stringVarIndex = ScriptReadByte(ctx);
+    u16 outfit = VarGet(ScriptReadHalfword(ctx));
+    u8 type = ScriptReadByte(ctx);
+    const u8 *str = NULL;
+
+    str = (type == OUTFIT_BUFFER_DESC) ? gOutfits[outfit].desc : gOutfits[outfit].name;
+    StringCopy(sScriptStringVars[stringVarIndex], str);
+    return FALSE;
+}

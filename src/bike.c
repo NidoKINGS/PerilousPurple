@@ -994,22 +994,6 @@ bool8 IsPlayerNotUsingAcroBikeOnBumpySlope(void)
         return TRUE;
 }
 
-void GetOnOffBike(u8 transitionFlags)
-{
-    if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_MACH_BIKE | PLAYER_AVATAR_FLAG_ACRO_BIKE))
-    {
-        SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT);
-        Overworld_ClearSavedMusic();
-        Overworld_PlaySpecialMapMusic();
-    }
-    else
-    {
-        SetPlayerAvatarTransitionFlags(transitionFlags);
-        Overworld_SetSavedMusic(MUS_CYCLING);
-        Overworld_ChangeMusicTo(MUS_CYCLING);
-    }
-}
-
 void BikeClearState(int newDirHistory, int newAbStartHistory)
 {
     u8 i;
@@ -1057,9 +1041,13 @@ s16 GetPlayerSpeed(void)
         }
     }
     else if (gPlayerAvatar.flags & (PLAYER_AVATAR_FLAG_SURFING | PLAYER_AVATAR_FLAG_DASH))
+    {
         return PLAYER_SPEED_FAST;
+    }
     else
+    {
         return PLAYER_SPEED_NORMAL;
+    }
 }
 
 void Bike_HandleBumpySlopeJump(void)

@@ -84,8 +84,8 @@ static void SetDistanceOfClosestHiddenItem(u8, s16, s16);
 static void CB2_OpenPokeblockFromBag(void);
 static void ItemUseOnFieldCB_Honey(u8 taskId);
 static bool32 IsValidLocationForVsSeeker(void);
-//static void CB2_OpenOutfitBoxFromBag(void);
-//static void Task_OpenRegisteredOutfitBox(u8 taskId);
+static void CB2_OpenOutfitBoxFromBag(void);
+static void Task_OpenRegisteredOutfitBox(u8 taskId);
 static void ItemUseOnFieldCB_Surfboard(u8);
 static void ItemUseOnFieldCB_MattockCut(u8);
 static void ItemUseOnFieldCB_MattockSmash(u8);
@@ -313,10 +313,22 @@ void ItemUseOutOfBattle_Bike(u8 taskId)
 
 static void ItemUseOnFieldCB_Bike(u8 taskId)
 {
-    if (GetItemSecondaryId(gSpecialVar_ItemId) == MACH_BIKE)
-        GetOnOffBike(PLAYER_AVATAR_FLAG_MACH_BIKE);
-    else // ACRO_BIKE
-        GetOnOffBike(PLAYER_AVATAR_FLAG_ACRO_BIKE);
+    gUnusedBikeCameraAheadPanback = FALSE;
+
+    gSaveBlock2Ptr->playerBike = MACH_BIKE;
+    if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_BIKE)
+    {
+        SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_ON_FOOT);
+        Overworld_ClearSavedMusic();
+        Overworld_PlaySpecialMapMusic();
+    }
+    else
+    {
+        gSaveBlock2Ptr->playerBike = GetItemSecondaryId(gSpecialVar_ItemId);
+        SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_BIKE);
+        Overworld_SetSavedMusic(MUS_CYCLING);
+        Overworld_ChangeMusicTo(MUS_CYCLING);
+    }
 
     FollowerNPC_HandleBike();
     ScriptUnfreezeObjectEvents();
@@ -1549,25 +1561,6 @@ void Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker(u8 taskId)
 }
 
 //Outfits
-/*void ItemUseOutOfBattle_OutfitBox(u8 taskId)
-{
-    if (MenuHelpers_IsLinkActive() == TRUE)
-    {
-        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
-    }
-    else if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
-    {
-        gBagMenu->newScreenCallback = CB2_OpenOutfitBoxFromBag;
-        Task_FadeAndCloseBagMenu(taskId);
-    }
-    else
-    {
-        gFieldCallback = FieldCB_ReturnToFieldNoScript;
-        FadeScreen(FADE_TO_BLACK, 0);
-        gTasks[taskId].func = Task_OpenRegisteredOutfitBox;
-    }
-}
-
 static void CB2_OpenOutfitBoxFromBag(void)
 {
     OpenOutfitMenu(CB2_ReturnToBagMenuPocket);
@@ -1581,7 +1574,7 @@ static void Task_OpenRegisteredOutfitBox(u8 taskId)
         OpenOutfitMenu(CB2_ReturnToField);
         DestroyTask(taskId);
     }
-}*/
+}
 
 static void Task_DisplayPokeFluteMessage(u8 taskId)
 {
@@ -1657,7 +1650,30 @@ void ItemUseOutOfBattle_Surfboard(u8 taskId)
         SetUpItemUseOnFieldCallback(taskId);
     }
     else
+    {
         DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        // TODO: handle key items with callbacks to menus allow to be used by registering them.
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+void ItemUseOutOfBattle_OutfitBox(u8 taskId)
+{
+    if (MenuHelpers_IsLinkActive() == TRUE)
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+    else if (gTasks[taskId].tUsingRegisteredKeyItem != TRUE)
+    {
+        gBagMenu->newScreenCallback = CB2_OpenOutfitBoxFromBag;
+        Task_FadeAndCloseBagMenu(taskId);
+    }
+    else
+    {
+        gFieldCallback = FieldCB_ReturnToFieldNoScript;
+        FadeScreen(FADE_TO_BLACK, 0);
+        gTasks[taskId].func = Task_OpenRegisteredOutfitBox;
+    }
 }
 
 static void ItemUseOnFieldCB_Surfboard(u8 taskId)

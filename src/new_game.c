@@ -57,7 +57,7 @@ extern const u8 EventScript_ResetAllMapFlags[];
 static void ClearFrontierRecord(void);
 static void WarpToTruck(void);
 static void ResetMiniGamesRecords(void);
-//static void ResetOutfitData(void);
+static void ResetOutfitData(void);
 static void ResetItemFlags(void);
 static void ResetDexNav(void);
 
@@ -143,7 +143,7 @@ void Sav2_ClearSetDefault(void)
 {
     ClearSav2();
     SetDefaultOptions();
-    //ResetOutfitData();
+    ResetOutfitData();
 }
 
 void ResetMenuAndMonGlobals(void)
@@ -156,12 +156,12 @@ void ResetMenuAndMonGlobals(void)
     ResetPokeblockScrollPositions();
 }
 
-/*static void ResetOutfitData(void)
+static void ResetOutfitData(void)
 {
     memset(gSaveBlock2Ptr->outfits, 0, sizeof(gSaveBlock2Ptr->outfits));
     UnlockOutfit(DEFAULT_OUTFIT);
     gSaveBlock2Ptr->currOutfitId = DEFAULT_OUTFIT;
-}*/
+}
 
 void NewGameInitData(void)
 {
@@ -223,6 +223,7 @@ void NewGameInitData(void)
     ResetContestLinkResults();
     SetCurrentDifficultyLevel(DIFFICULTY_NORMAL);
     ResetItemFlags();
+    ResetOutfitData();
     ResetDexNav();
     ClearFollowerNPCData();
 }

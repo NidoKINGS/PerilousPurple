@@ -255,7 +255,10 @@ gScriptCmdTable::
 	script_cmd_table_entry SCR_OP_SUBQUESTMENU		   			ScrCmd_subquestmenu,				requests_effects=1  @ 0xe6
 	script_cmd_table_entry SCR_OP_RETURNQUESTSTATE		    	ScrCmd_returnqueststate,			requests_effects=1  @ 0xe7
 	script_cmd_table_entry SCR_OP_SETCLIFFWARP                  ScrCmd_setcliffwarp,               	requests_effects=1  @ 0xe8
-	
+	script_cmd_table_entry SCR_OP_TOGGLEOUTFIT                  ScrCmd_toggleoutfit                 requests_effects=1  @ 0xe9
+	script_cmd_table_entry SCR_OP_GETOUTFITSTATUS               ScrCmd_getoutfitstatus              requests_effects=1  @ 0xea
+	script_cmd_table_entry SCR_OP_BUFFEROUTFITSTR               ScrCmd_bufferoutfitstr              requests_effects=1  @ 0xeb
+
 	.if ALLOCATE_SCRIPT_CMD_TABLE
 gScriptCmdTableEnd::
 	.4byte ScrCmd_nop

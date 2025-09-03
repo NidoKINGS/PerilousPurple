@@ -4,11 +4,11 @@
 #if MODERN == 0
 static const u8 sText_OutfitName_UsualGreen[] = _("USUAL GREEN");
 static const u8 sText_OutfitDesc_UsualGreen[] = _(
-    "The usual, but\nbasic OUTFIT.");
+    "The usual, but basic OUTFIT.");
 
 static const u8 sText_OutfitName_UnusualRed[] = _("UNUSUAL RED");
 static const u8 sText_OutfitDesc_UnusualRed[] = _(
-    "Rather unusual,\nbut still basic\nOUTFIT.");
+    "Rather unusual, but still basic\nOUTFIT.");
 #endif
 
 static const u16 sRegionMapPlayerIcon_BrendanGfx[] = INCBIN_U16("graphics/pokenav/region_map/brendan_icon.4bpp");
@@ -49,7 +49,7 @@ static const u8 sFrontierPassPlayerIcons_RSBrendanMay_Gfx[] = INCBIN_U8("graphic
 #define OBJ_EVENT_GFX_OUTFIT_RS_MAY_DECORATING OBJ_EVENT_GFX_MAY_DECORATING
 #define OBJ_EVENT_GFX_OUTFIT_RS_MAY_FIELD_MOVE OBJ_EVENT_GFX_MAY_FIELD_MOVE
 
-/*const struct Outfit gOutfits[OUTFIT_COUNT] =
+const struct Outfit gOutfits[OUTFIT_COUNT] =
 {
     [OUTFIT_NONE] = {
         .isHidden = TRUE
@@ -71,7 +71,7 @@ static const u8 sFrontierPassPlayerIcons_RSBrendanMay_Gfx[] = INCBIN_U8("graphic
 
         //! DESC: outfit's description
         #if MODERN == 1
-        .desc = COMPOUND_STRING("The usual, but\nbasic OUTFIT."),
+        .desc = COMPOUND_STRING("The usual, but basic OUTFIT."),
         #else
         .desc = sText_OutfitDesc_UsualGreen,
         #endif
@@ -132,7 +132,7 @@ static const u8 sFrontierPassPlayerIcons_RSBrendanMay_Gfx[] = INCBIN_U8("graphic
         .prices = { 200, 500 },
         #if MODERN == 1
         .name = COMPOUND_STRING("UNUSUAL RED"),
-        .desc = COMPOUND_STRING("Rather unusual,\nbut still basic\nOUTFIT."),
+        .desc = COMPOUND_STRING("Rather unusual, but still basic\nOUTFIT."),
         #else
         .name = sText_OutfitName_UnusualRed,
         .desc = sText_OutfitDesc_UnusualRed,
@@ -174,4 +174,4 @@ static const u8 sFrontierPassPlayerIcons_RSBrendanMay_Gfx[] = INCBIN_U8("graphic
         .iconsRM = { sRegionMapPlayerIcon_RSBrendanGfx, sRegionMapPlayerIcon_RSMayGfx },
         .iconsFP = sFrontierPassPlayerIcons_RSBrendanMay_Gfx,
     },
-};*/
+};

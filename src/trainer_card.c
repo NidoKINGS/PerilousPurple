@@ -32,6 +32,7 @@
 #include "constants/game_stat.h"
 #include "constants/battle_frontier.h"
 #include "constants/rgb.h"
+#include "outfit_menu.h"
 #include "constants/trainers.h"
 #include "constants/union_room.h"
 
@@ -1883,7 +1884,7 @@ static u8 VersionToCardType(u8 version)
 }
 
 //Outfits
-/*static void CreateTrainerCardTrainerPic(void)
+static void CreateTrainerCardTrainerPic(void)
 {
     if (InUnionRoom() == TRUE && gReceivedRemoteLinkPlayers == 1)
     {
@@ -1899,28 +1900,6 @@ static u8 VersionToCardType(u8 version)
         //! TODO: Support outfits on linking
         u16 picId = GetPlayerTrainerPicIdByOutfitGenderType(gSaveBlock2Ptr->currOutfitId, sData->trainerCard.gender, 0);
         CreateTrainerCardTrainerPicSprite(picId,
-                    TRUE,
-                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][0],
-                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][1],
-                    8,
-                    WIN_TRAINER_PIC);
-    }
-}*/
-
-static void CreateTrainerCardTrainerPic(void)
-{
-    if (InUnionRoom() == TRUE && gReceivedRemoteLinkPlayers == 1)
-    {
-        CreateTrainerCardTrainerPicSprite(FacilityClassToPicIndex(sData->trainerCard.unionRoomClass),
-                    TRUE,
-                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][0],
-                    sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][1],
-                    8,
-                    WIN_TRAINER_PIC);
-    }
-    else
-    {
-        CreateTrainerCardTrainerPicSprite(FacilityClassToPicIndex(sTrainerPicFacilityClass[sData->cardType][sData->trainerCard.gender]),
                     TRUE,
                     sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][0],
                     sTrainerPicOffset[sData->isHoenn][sData->trainerCard.gender][1],

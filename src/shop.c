@@ -22,6 +22,7 @@
 #include "menu_helpers.h"
 #include "money.h"
 #include "move.h"
+#include "outfit_menu.h"
 #include "overworld.h"
 #include "palette.h"
 #include "party_menu.h"
@@ -71,6 +72,7 @@ enum {
     MART_TYPE_NORMAL,
     MART_TYPE_DECOR,
     MART_TYPE_DECOR2,
+    MART_TYPE_OUTFIT,
 };
 
 // shop view window NPC info enum
@@ -608,6 +610,8 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
     {
         if (sMartInfo.martType == MART_TYPE_NORMAL)
             description = GetItemDescription(item);
+        else if (sMartInfo.martType == MART_TYPE_OUTFIT)
+            description = gOutfits[item].name; // the actual desc is a bit too long oops
         else
             description = gDecorations[item].description;
     }
@@ -643,7 +647,7 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
                 6);
         }
 
-        if (GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1)))
+        if ((GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1))) || GetOutfitStatus(itemId))
             StringCopy(gStringVar4, gText_SoldOut);
         else
             StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
@@ -1002,10 +1006,12 @@ static void Task_BuyMenu(u8 taskId)
 
             if (sMartInfo.martType == MART_TYPE_NORMAL)
                 sShopData->totalCost = (GetItemPrice(itemId) >> IsPokeNewsActive(POKENEWS_SLATEPORT));
+            /*else if (sMartInfo.martType == MART_TYPE_OUTFIT)
+                sShopData->totalCost = GetOutfitPrice(itemId);*/
             else
                 sShopData->totalCost = gDecorations[itemId].price;
 
-            if (GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1)))
+            if ((GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1))) || GetOutfitStatus(itemId))
                 BuyMenuDisplayMessage(taskId, gText_ThatItemIsSoldOut, BuyMenuReturnToItemList);
             else if (!IsEnoughMoney(&gSaveBlock1Ptr->money, sShopData->totalCost))
             {

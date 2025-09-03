@@ -14591,9 +14591,9 @@ const struct Item gItemsInfo[] =
 
     //Outfit Box
 
-    /*[ITEM_OUTFIT_BOX] =
+    [ITEM_OUTFIT_BOX] =
     {
-        .name = _("Outfit Box"),
+        .name = ITEM_NAME("Outfit Box"),
         .price = 2000,
         .description = COMPOUND_STRING(
             "A wooden box\n"
@@ -14605,7 +14605,7 @@ const struct Item gItemsInfo[] =
             .fieldUseFunc = ItemUseOutOfBattle_OutfitBox,
             .iconPic = gItemIcon_OutfitBox,
             .iconPalette = gItemIconPalette_OutfitBox,
-    },*/
+    },
 
     //HM Items
 
