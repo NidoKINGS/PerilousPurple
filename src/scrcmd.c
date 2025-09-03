@@ -65,7 +65,7 @@
 #include "constants/map_types.h"
 
 typedef u16 (*SpecialFunc)(void);
-typedef void (*NativeFunc)(struct ScriptContext *ctx);
+typedef void (*NativeFunc)(struct ScriptContext *);
 
 EWRAM_DATA const u8 *gRamScriptRetAddr = NULL;
 static EWRAM_DATA u32 sAddressOffset = 0; // For relative addressing in vgoto etc., used by saved scripts (e.g. Mystery Event)
@@ -2537,7 +2537,7 @@ bool8 ScrCmd_dowildbattle(struct ScriptContext *ctx)
 }
 
 //New Shop
-/*bool8 ScrCmd_pokemart(struct ScriptContext *ctx)
+bool8 ScrCmd_pokemart(struct ScriptContext *ctx)
 {
     const void *ptr = (void *)ScriptReadWord(ctx);
     bool16 useVariablePrices = ScriptReadHalfword(ctx);
@@ -2574,41 +2574,7 @@ bool8 ScrCmd_pokemartdecoration2(struct ScriptContext *ctx)
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
-    CreateDecorationShop2Menu(ptr);
-    ScriptContext_Stop();
-    return TRUE;
-}*/
-
-bool8 ScrCmd_pokemart(struct ScriptContext *ctx)
-{
-    const void *ptr = (void *)ScriptReadWord(ctx);
-
-    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
-
-    CreatePokemartMenu(ptr);
-    ScriptContext_Stop();
-    return TRUE;
-}
-
-bool8 ScrCmd_pokemartdecoration(struct ScriptContext *ctx)
-{
-    const void *ptr = (void *)ScriptReadWord(ctx);
-
-    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
-
-    CreateDecorationShop1Menu(ptr);
-    ScriptContext_Stop();
-    return TRUE;
-}
-
-// Changes clerk dialogue slightly from above. See MART_TYPE_DECOR2
-bool8 ScrCmd_pokemartdecoration2(struct ScriptContext *ctx)
-{
-    const void *ptr = (void *)ScriptReadWord(ctx);
-
-    Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
-
-    CreateDecorationShop2Menu(ptr);
+    NewShop_CreateDecorationShop2Menu(ptr);
     ScriptContext_Stop();
     return TRUE;
 }
@@ -3461,25 +3427,19 @@ bool8 ScrCmd_getoutfitstatus(struct ScriptContext *ctx)
     return TRUE;
 }
 
-/*bool8 ScrCmd_bufferoutfitstr(struct ScriptContext *ctx)
-{
-    u8 strVarIdx = ScriptReadByte(ctx);
-    u16 outfit = VarGet(ScriptReadHalfword(ctx));
-    u8 type = ScriptReadByte(ctx);
-
-    BufferOutfitStrings(sScriptStringVars[strVarIdx], outfit, type);
-    return TRUE;
-}
-
 bool8 ScrCmd_pokemartoutfit(struct ScriptContext *ctx)
 {
     const void *ptr = (void *)ScriptReadWord(ctx);
 
+    #ifdef MUDSKIP_SHOP_UI
+    NewShop_CreateOutfitShopMenu(ptr);
+    #else
     CreateOutfitShopMenu(ptr);
+    #endif // MUDSKIP_SHOP_UI
 
     ScriptContext_Stop();
     return TRUE;
-}*/
+}
 
 bool8 ScrCmd_bufferoutfitstr(struct ScriptContext *ctx)
 {
