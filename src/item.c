@@ -952,3 +952,13 @@ u32 GetItemBpPrice(u16 itemId)
 {
     return gItemsInfo[SanitizeItemId(itemId)].bpPrice;
 }
+
+u32 ItemId_GetCoinPrice(u16 itemId)
+{
+    return gItemsInfo[SanitizeItemId(itemId)].coinPrice;
+}
+
+u32 ItemId_GetBpPrice(u16 itemId)
+{
+    return gItemsInfo[SanitizeItemId(itemId)].bpPrice;
+}

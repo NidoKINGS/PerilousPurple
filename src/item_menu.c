@@ -48,6 +48,7 @@
 #include "window.h"
 #include "apprentice.h"
 #include "battle_pike.h"
+#include "new_shop.h"
 #include "constants/items.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -199,7 +200,7 @@ static void ItemMenu_UseOutOfBattle(u8);
 static void ItemMenu_Toss(u8);
 static void ItemMenu_Register(u8);
 static void ItemMenu_Give(u8);
-//static void ItemMenu_Cancel(u8);
+static void ItemMenu_Cancel(u8);
 static void ItemMenu_UseInBattle(u8);
 static void ItemMenu_CheckTag(u8);
 static void ItemMenu_Show(u8);
@@ -621,7 +622,11 @@ void ChooseBerryForMachine(void (*exitCallback)(void))
 
 void CB2_GoToSellMenu(void)
 {
+    #ifdef MUDSKIP_SHOP_UI
+    GoToBagMenu(ITEMMENULOCATION_SHOP, POCKETS_COUNT, CB2_ExitSellNewShopMenu);
+    #else
     GoToBagMenu(ITEMMENULOCATION_SHOP, POCKETS_COUNT, CB2_ExitSellMenu);
+    #endif // MUDSKIP_SHOP_UI
 }
 
 void CB2_GoToItemDepositMenu(void)
@@ -898,6 +903,7 @@ static void AllocateBagItemListBuffers(void)
 static void LoadBagItemListBuffers(u8 pocketId)
 {
     u16 i;
+    //struct BagPocket *pocket = &gBagPockets[pocketId];
     struct ListMenuItem *subBuffer;
 
     if (!gBagMenu->hideCloseBagText)
@@ -986,10 +992,12 @@ static void BagMenu_MoveCursorCallback(s32 itemIndex, bool8 onInit, struct ListM
 
 static void BagMenu_ItemPrintCallback(u8 windowId, u32 itemIndex, u8 y)
 {
+    //u16 itemId;
+    //u16 itemQuantity;
+    int offset;
+
     if (itemIndex != LIST_CANCEL)
     {
-        s32 offset;
-
         if (gBagMenu->toSwapPos != NOT_SWAPPING)
         {
             // Swapping items, draw cursor at original item's location

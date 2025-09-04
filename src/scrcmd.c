@@ -63,6 +63,7 @@
 #include "quests.h"
 #include "constants/event_objects.h"
 #include "constants/map_types.h"
+#include "constants/new_shop.h"
 
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(struct ScriptContext *);
@@ -2540,17 +2541,24 @@ bool8 ScrCmd_dowildbattle(struct ScriptContext *ctx)
 bool8 ScrCmd_pokemart(struct ScriptContext *ctx)
 {
     const void *ptr = (void *)ScriptReadWord(ctx);
-    bool16 useVariablePrices = ScriptReadHalfword(ctx);
+    u16 shopType = ScriptReadHalfword(ctx);
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
-    
-    if (useVariablePrices)
+
+    switch (shopType)
     {
+    case NEW_SHOP_PRICE_TYPE_VARIABLE:
         NewShop_CreateVariablePokemartMenu(ptr);
-    }
-    else
-    {
+        break;
+    case NEW_SHOP_PRICE_TYPE_COINS:
+        NewShop_CreateCoinPokemartMenu(ptr);
+        break;
+    case NEW_SHOP_PRICE_TYPE_POINTS:
+        NewShop_CreatePointsPokemartMenu(ptr);
+        break;
+    default:
         NewShop_CreatePokemartMenu(ptr);
+        break;
     }
     ScriptContext_Stop();
     return TRUE;
@@ -2562,12 +2570,12 @@ bool8 ScrCmd_pokemartdecoration(struct ScriptContext *ctx)
 
     Script_RequestEffects(SCREFF_V1 | SCREFF_HARDWARE);
 
-    CreateDecorationShop1Menu(ptr);
+    NewShop_CreateDecorationShop1Menu(ptr);
     ScriptContext_Stop();
     return TRUE;
 }
 
-// Changes clerk dialogue slightly from above. See MART_TYPE_DECOR2
+// Changes clerk dialogue slightly from above. See NEW_SHOP_TYPE_DECOR2
 bool8 ScrCmd_pokemartdecoration2(struct ScriptContext *ctx)
 {
     const void *ptr = (void *)ScriptReadWord(ctx);
