@@ -43,6 +43,7 @@
 #include "vs_seeker.h"
 #include "item.h"
 #include "field_name_box.h"
+#include "field_name_box.h"
 #include "constants/battle_frontier.h"
 #include "constants/battle_setup.h"
 #include "constants/event_objects.h"
@@ -1499,7 +1500,7 @@ static const u8 *GetIntroSpeechOfApproachingTrainer(void)
     {
         if (OW_NAME_BOX_NPC_TRAINER)
             gSpeakerName = GetTrainerNameFromId(TRAINER_BATTLE_PARAM.opponentB);
-            
+
         return ReturnEmptyStringIfNull(TRAINER_BATTLE_PARAM.introTextB);
     }
 }
