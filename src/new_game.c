@@ -51,6 +51,7 @@
 #include "tx_registered_items_menu.h"
 #include "difficulty.h"
 #include "follower_npc.h"
+#include "fake_rtc.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
@@ -226,6 +227,7 @@ void NewGameInitData(void)
     ResetOutfitData();
     ResetDexNav();
     ClearFollowerNPCData();
+    RtcCalcLocalTimeOffset(1, 8, 30, 0);
 }
 
 static void ResetMiniGamesRecords(void)

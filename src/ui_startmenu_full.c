@@ -49,6 +49,7 @@
 #include "frontier_pass.h"
 #include "start_menu.h"
 #include "quests.h"
+#include "fake_rtc.h"
 
 #define tItemPcParam    data[6]
 
