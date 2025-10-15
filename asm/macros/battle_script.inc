@@ -13,7 +13,7 @@
 	.byte 0x2
 	.endm
 
-	.macro unused0x3
+	.macro unused_0x3
 	.byte 0x3
 	.endm
 
@@ -696,10 +696,10 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro tryhealhalfhealth failInstr:req, battler:req
+	.macro tryhealhalfhealth battler:req, failInstr:req
 	.byte 0x7b
-	.4byte \failInstr
 	.byte \battler
+	.4byte \failInstr
 	.endm
 
 	.macro trymirrormove
@@ -1011,8 +1011,10 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro tryrestorehpberry
+	.macro tryactivateitem battler:req, flag:req
 	.byte 0xbb
+	.byte \battler
+	.byte \flag
 	.endm
 
 	.macro halvehp failInstr:req
@@ -1372,11 +1374,6 @@
 	.4byte \failInstr
 	.endm
 
-	.macro itemstatchangeeffects battler:req
-	callnative BS_RunStatChangeItems
-	.byte \battler
-	.endm
-
 	.macro allyswitchswapbattlers
 	callnative BS_AllySwitchSwapBattler
 	.endm
@@ -1431,7 +1428,7 @@
 	.4byte \jumpInstr
 	.endm
 
-	.macro setpledgestatus battler:req sidestatus:req
+	.macro setpledgestatus battler:req, sidestatus:req
 	callnative BS_SetPledgeStatus
 	.byte \battler
 	.4byte \sidestatus
@@ -1764,6 +1761,10 @@
 	.macro setmoveresultflags flags:req
 	callnative BS_SetMoveResultFlags
 	.2byte \flags
+	.endm
+
+	.macro clearspecialstatuses
+	callnative BS_ClearSpecialStatuses
 	.endm
 
 	.macro clearmoveresultflags flags:req

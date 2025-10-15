@@ -6,7 +6,7 @@
 // still has them in the ROM. This is because the developers forgot
 // to define NDEBUG before release, however this has been changed as
 // Ruby's actual debug build does not use the AGBPrint features.
-// 
+//
 // Use `make release` to automatically enable NDEBUG.
 #ifdef RELEASE
 #define NDEBUG

@@ -150,40 +150,6 @@ static void CreateStopSurfingTask(u8);
 static void Task_StopSurfingInit(u8);
 static void Task_WaitStopSurfing(u8);
 
-static void Task_Fishing(u8);
-static bool32 Fishing_Init(struct Task *);
-static bool32 Fishing_GetRodOut(struct Task *);
-static bool32 Fishing_WaitBeforeDots(struct Task *);
-static bool32 Fishing_InitDots(struct Task *);
-static bool32 Fishing_ShowDots(struct Task *);
-static bool32 Fishing_CheckForBite(struct Task *);
-static bool32 Fishing_GotBite(struct Task *);
-static bool32 Fishing_ChangeMinigame(struct Task *);
-static bool32 Fishing_WaitForA(struct Task *);
-static bool32 Fishing_APressNoMinigame(struct Task *);
-static bool32 Fishing_CheckMoreDots(struct Task *);
-static bool32 Fishing_MonOnHook(struct Task *);
-static bool32 Fishing_StartEncounter(struct Task *);
-static bool32 Fishing_NotEvenNibble(struct Task *);
-static bool32 Fishing_GotAway(struct Task *);
-static bool32 Fishing_NoMon(struct Task *);
-static bool32 Fishing_PutRodAway(struct Task *);
-static bool32 Fishing_EndNoMon(struct Task *);
-static void AlignFishingAnimationFrames(void);
-static bool32 DoesFishingMinigameAllowCancel(void);
-static bool32 Fishing_DoesFirstMonInPartyHaveSuctionCupsOrStickyHold(void);
-static bool32 Fishing_RollForBite(u32, bool32);
-static u32 CalculateFishingBiteOdds(u32, bool32);
-static u32 CalculateFishingFollowerBoost(void);
-static u32 CalculateFishingProximityBoost(u32 odds);
-static void GetCoordinatesAroundBobber(s16[], s16[][AXIS_COUNT], u32);
-static u32 CountQualifyingTiles(s16[][AXIS_COUNT], s16 player[], u8 facingDirection, struct ObjectEvent *objectEvent, bool32 isTileLand[]);
-static bool32 CheckTileQualification(s16 tile[], s16 player[], u32 facingDirection, struct ObjectEvent* objectEvent, bool32 isTileLand[], u32 direction);
-static u32 CountLandTiles(bool32 isTileLand[]);
-static bool32 IsPlayerHere(s16, s16, s16, s16);
-static bool32 IsMetatileBlocking(s16, s16, u32);
-static bool32 IsMetatileLand(s16, s16, u32);
-
 static u8 TrySpinPlayerForWarp(struct ObjectEvent *, s16 *);
 
 static bool8 (*const sForcedMovementTestFuncs[NUM_FORCED_MOVEMENTS])(u8) =
@@ -1666,11 +1632,11 @@ void SetPlayerAvatarFieldMove(void)
     SetPlayerAvatarAnimation(PLAYER_AVATAR_GFX_FIELD_MOVE, ANIM_FIELD_MOVE);
 }
 
-/*static void SetPlayerAvatarFishing(u8 direction)
+void SetPlayerAvatarFishing(u8 direction)
 {
     ObjectEventSetGraphicsId(&gObjectEvents[gPlayerAvatar.objectEventId], GetPlayerAvatarGraphicsIdByStateId(PLAYER_AVATAR_STATE_FISHING));
     StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingDirectionAnimNum(direction));
-}*/
+}
 
 void PlayerUseAcroBikeOnBumpySlope(u8 direction)
 {
@@ -1935,6 +1901,7 @@ static void Task_WaitStopSurfing(u8 taskId)
     }
 }
 
+/*
 #define tStep              data[0]
 #define tFrameCounter      data[1]
 #define tNumDots           data[2]
@@ -2571,7 +2538,7 @@ static void AlignFishingAnimationFrames(void)
         playerSprite->y2 = 8;
     if (gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_SURFING)
         SetSurfBlob_PlayerOffset(gObjectEvents[gPlayerAvatar.objectEventId].fieldEffectSpriteId, TRUE, playerSprite->y2);
-}
+}*/
 
 void SetSpinStartFacingDir(u8 direction)
 {
