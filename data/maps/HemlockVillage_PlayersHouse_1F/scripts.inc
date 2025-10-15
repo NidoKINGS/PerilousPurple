@@ -18,7 +18,7 @@ HemlockVillage_PlayersHouse_1F_EventScript_Mom_Introduction::
 
 HemlockVillage_PlayersHouse_1F_EventScript_Mom_Introduction_Text_0:
 # 8 "data/maps/HemlockVillage_PlayersHouse_1F/scripts.pory"
-	.string "Mother$"
+	.string "Mom$"
 
 HemlockVillage_PlayersHouse_1F_EventScript_Mom_Introduction_Text_1:
 # 9 "data/maps/HemlockVillage_PlayersHouse_1F/scripts.pory"

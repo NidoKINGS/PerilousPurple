@@ -1,0 +1,82 @@
+const LOCALID_HEMLOCK_MOM = 1
+
+mapscripts HemlockVillage_PlayersHouse_Bedroom_MapScripts {
+    MAP_SCRIPT_ON_TRANSITION {
+        setflag(FLAG_HIDE_MOM)
+        setobjectmovementtype(LOCALID_HEMLOCK_MOM, MOVEMENT_TYPE_FACE_UP)
+        setobjectxyperm(LOCALID_HEMLOCK_MOM, 4, 7)
+        //setvar(VAR_HEMLOCKVILLAGE_INTRO_STATE, 1)
+    }
+    MAP_SCRIPT_ON_FRAME_TABLE [
+        VAR_HEMLOCKVILLAGE_INTRO_STATE, 0: HemlockVillage_PlayersHouse_Bedroom_OnFrame_PlayerWakeUp
+    ]
+}
+
+// VAR STATES
+// VAR_HEMLOCKVILLAGE_INTRO_STATE
+// 1: Mom wakes up Player - OnFrame_PlayerWakeUp
+// 2: Player gets dressed
+// 3: Player checks their PC
+// 4: Dad yells for Player to hurry up
+// 5: Leaves for the hallway
+
+script HemlockVillage_PlayersHouse_Bedroom_OnFrame_PlayerWakeUp {
+    lockall
+    setspeaker("???")
+    msgbox(format("Knock, knock! Are you almost ready?"))
+    clearflag(FLAG_HIDE_MOM)
+    playse(SE_DOOR)
+    delay(10)
+    goto(HemlockVillage_PlayersHouse_Bedroom_MomTalks)
+}
+
+script HemlockVillage_PlayersHouse_Bedroom_MomTalks {
+    addobject(LOCALID_HEMLOCK_MOM)
+    applymovement(1, Mom_MovementToPlayer)
+    waitmovement
+    applymovement(OBJ_EVENT_ID_PLAYER, Player_TurnToMom)
+    waitmovement
+    setspeaker("Mom")
+    msgbox(format("{PLAYER}, you must have slept through your alarm, it's after 8:30…\N You're going to be late, Professor Halesia will be extremely disappointed.\N Get dressed now and get your behind downstairs."))
+    waitmessage
+    applymovement(1, Mom_MovementToDoor)
+    waitmovement
+    playse(SE_DOOR)
+    delay(10)
+    setflag(FLAG_HIDE_MOM)
+    removeobject(LOCALID_HEMLOCK_MOM)
+    setvar(VAR_HEMLOCKVILLAGE_INTRO_STATE, 1)
+    releaseall
+}
+
+movement Mom_MovementToPlayer {
+    walk_fast_up *5
+    face_right
+    walk_fast_right *2
+    step_end
+}
+
+movement Player_TurnToMom {
+    face_left
+    step_end
+}
+
+movement Mom_MovementToDoor {
+    face_left
+    walk_faster_left *2
+    face_down
+    walk_faster_down *5
+    step_end
+}
+
+script OpenDresser {
+    lockall
+    setspeaker("Self")
+    msgbox("Hmmm, what should I wear?")
+    closemessage
+    fadescreen(FADE_TO_BLACK)
+    callnative(Script_OpenOutfitMenu)
+    waitstate
+    releaseall
+    end
+}

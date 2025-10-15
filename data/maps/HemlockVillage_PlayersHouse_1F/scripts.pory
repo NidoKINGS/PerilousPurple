@@ -5,7 +5,11 @@ mapscripts HemlockVillage_PlayersHouse_1F_MapScripts {}
 script HemlockVillage_PlayersHouse_1F_EventScript_Mom_Introduction{
     lockall
     faceplayer
-    setspeaker("Mother")
+    setspeaker("Mom")
     msgbox(format("Hello there, {PLAYER}!"))
     releaseall
 }
+
+// Need to include in final before leaving house
+// setflag(FLAG_RECEIVED_RUNNING_SHOES)
+// setflag(FLAG_SYS_B_DASH)

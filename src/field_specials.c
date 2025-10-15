@@ -72,6 +72,7 @@
 #include "palette.h"
 #include "battle_util.h"
 #include "naming_screen.h"
+#include "outfit_menu.h"
 
 #define TAG_ITEM_ICON 5500
 
@@ -619,6 +620,16 @@ static void LoadLinkPartnerObjectEventSpritePalette(u16 graphicsId, u8 localEven
         i++;
     }
 }*/
+
+void Script_OpenOutfitMenu(void)
+{
+    if (!gPaletteFade.active)
+    {
+        PlayRainStoppingSoundEffect();
+        CleanupOverworldWindowsAndTilemaps();
+        OpenOutfitMenu(CB2_ReturnToField);
+    }
+}
 
 void SpawnLinkPartnerObjectEvent(void)
 {

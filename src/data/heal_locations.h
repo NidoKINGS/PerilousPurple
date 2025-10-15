@@ -139,8 +139,8 @@ static const struct HealLocation sHealLocations[NUM_HEAL_LOCATIONS - 1] = {
     [HEAL_LOCATION_HEMLOCK_VILLAGE_PLAYERS_HOUSE_BEDROOM - 1] = {
         .mapGroup = MAP_GROUP(MAP_HEMLOCK_VILLAGE_PLAYERS_HOUSE_BEDROOM),
         .mapNum = MAP_NUM(MAP_HEMLOCK_VILLAGE_PLAYERS_HOUSE_BEDROOM),
-        .x = 1,
-        .y = 4,
+        .x = 7,
+        .y = 2,
     },
 };
 
